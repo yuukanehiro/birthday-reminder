@@ -1,25 +1,29 @@
-version: '2'
+version: '3'
 services:
   api:
     build:
       context: .
       dockerfile: ./docker/golang/Dockerfile
     container_name: birthday-reminder-api
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: birthday_reminder
+      TZ: "Asia/Tokyo"
+      LANG: "ja_JP.utf8"
     ports:
       - 8080:8080
     tty: true
     volumes:
-      - ./app/src/server.go:/go/src/server.go
+      - ./app/src/main.go:/go/src/app/main.go
   db:
     build:
       context: .
       dockerfile: ./docker/db/Dockerfile
     container_name: birthday-reminder-db
-    restart: always
     environment:
-      POSTGRES_USER: dbuser
-      POSTGRES_PASSWORD: dbpassword
-      PGPASSWORD: dbpassword
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
       POSTGRES_DB: birthday_reminder
       TZ: "Asia/Tokyo"
       LANG: "ja_JP.utf8"
@@ -27,3 +31,5 @@ services:
       - 5432:5432
     volumes:
       - ./data/db/data:/var/lib/postgresql/data
+      - ./docker/db/scripts:/docker-entrypoint-initdb.d
+    restart: always

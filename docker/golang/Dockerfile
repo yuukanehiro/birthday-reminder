@@ -2,8 +2,9 @@ FROM golang:1.17-alpine
 ENV ROOT=/go/src/app
 
 RUN apk update && apk add git
+RUN apk --no-cache add postgresql-client
 COPY ./app/src/ ${ROOT}
-
+COPY ./go.mod ${ROOT}
 
 WORKDIR ${ROOT}
 RUN go mod tidy \
