@@ -4,7 +4,7 @@ ENV DIR_CMD=/go/src/app/cmd
 
 RUN apk update && apk add git
 RUN apk --no-cache add postgresql-client
-COPY ./app/src/ ${ROOT}
+COPY ./ ${ROOT}
 
 WORKDIR ${DIR_CMD}
 RUN go mod tidy \

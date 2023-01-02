@@ -15,7 +15,7 @@ services:
   api:
     build:
       context: .
-      dockerfile: ./docker/golang/Dockerfile
+      dockerfile: ./deployments/docker/golang/Dockerfile
     container_name: birthday-reminder-api
     environment:
       POSTGRES_USER: *POSTGRES_USER
@@ -29,14 +29,14 @@ services:
     volumes:
       # .todo パスの指定を最小化。
       # ./app/src:/go/src/appと定義するとエラーになる
-      - ./app/src/cmd/main.go:/go/src/app/cmd/main.go
-      - ./app/src/entities:/go/src/app/entities
-      - ./app/src/usecases:/go/src/app/usecases
-      - ./app/src/cmd:/go/src/app/cmd
+      - ./cmd/main.go:/go/src/app/cmd/main.go
+      - ./cmd:/go/src/app/cmd
+      - ./entities:/go/src/app/entities
+      - ./usecases:/go/src/app/usecases
   db:
     build:
       context: .
-      dockerfile: ./docker/db/Dockerfile
+      dockerfile: ./deployments/docker/db/Dockerfile
     container_name: birthday-reminder-db
     environment:
       POSTGRES_USER: *POSTGRES_USER
@@ -47,6 +47,6 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - ./data/db/data:/var/lib/postgresql/data
-      - ./docker/db/scripts:/docker-entrypoint-initdb.d
+      - ./deployments/data/db/data:/var/lib/postgresql/data
+      - ./deployments/docker/db/scripts:/docker-entrypoint-initdb.d
     restart: always
