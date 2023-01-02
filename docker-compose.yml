@@ -1,4 +1,16 @@
-version: '3'
+version: '3.4'
+
+x-var: &POSTGRES_USER
+  "docker"
+x-var: &POSTGRES_PASSWORD
+  "docker"
+x-var: &POSTGRES_DB
+  "birthday_reminder"
+x-var: &TZ
+  "Asia/Tokyo"
+x-var: &LANG
+  "ja_JP.utf8"
+
 services:
   api:
     build:
@@ -6,27 +18,32 @@ services:
       dockerfile: ./docker/golang/Dockerfile
     container_name: birthday-reminder-api
     environment:
-      POSTGRES_USER: docker
-      POSTGRES_PASSWORD: docker
-      POSTGRES_DB: birthday_reminder
-      TZ: "Asia/Tokyo"
-      LANG: "ja_JP.utf8"
+      POSTGRES_USER: *POSTGRES_USER
+      POSTGRES_PASSWORD: *POSTGRES_PASSWORD
+      POSTGRES_DB: *POSTGRES_DB
+      TZ: *TZ
+      LANG: *LANG
     ports:
       - 8080:8080
     tty: true
     volumes:
-      - ./app/src/main.go:/go/src/app/main.go
+      # .todo パスの指定を最小化。
+      # ./app/src:/go/src/appと定義するとエラーになる
+      - ./app/src/cmd/main.go:/go/src/app/cmd/main.go
+      - ./app/src/entities:/go/src/app/entities
+      - ./app/src/usecases:/go/src/app/usecases
+      - ./app/src/cmd:/go/src/app/cmd
   db:
     build:
       context: .
       dockerfile: ./docker/db/Dockerfile
     container_name: birthday-reminder-db
     environment:
-      POSTGRES_USER: docker
-      POSTGRES_PASSWORD: docker
-      POSTGRES_DB: birthday_reminder
-      TZ: "Asia/Tokyo"
-      LANG: "ja_JP.utf8"
+      POSTGRES_USER: *POSTGRES_USER
+      POSTGRES_PASSWORD: *POSTGRES_PASSWORD
+      POSTGRES_DB: *POSTGRES_DB
+      TZ: *TZ
+      LANG: *LANG
     ports:
       - 5432:5432
     volumes:
