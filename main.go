@@ -1,23 +1,20 @@
 package main
 
 import (
-    "net/http"
-    "github.com/labstack/echo"
+  "net/http"
+  "os"
+  "fmt"
 )
 
-type ItemData struct {
-    Id int `json:"id"`
-    Name string `json:"name"`
-}
-
 func main() {
-    e := echo.New()
-    e.GET("/", func(c echo.Context) error {
-        item := new(ItemData)
-        if err := c.Bind(item); err != nil {
-            return err
-        }
-        return c.JSON(http.StatusOK, item)
-    })
-    e.Logger.Fatal(e.Start(":8080"))
+  err := http.ListenAndServe(
+    ":8080",
+    http.HandlerFunc(func(http_response_writer http.ResponseWriter, http_request *http.Request) {
+      fmt.Fprintf(http_response_writer, "hello, %s", http_request.URL.Path[1:])
+    }),
+  )
+  if err != nil {
+    fmt.Printf("failed to terminate server: %v", err)
+    os.Exit(1)
+  }
 }
