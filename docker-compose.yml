@@ -29,10 +29,11 @@ services:
     volumes:
       # .todo パスの指定を最小化。
       # ./app/src:/go/src/appと定義するとエラーになる
-      - ./cmd/main.go:/go/src/app/cmd/main.go
-      - ./cmd:/go/src/app/cmd
+      - ./main.go:/go/src/app/main.go
       - ./entities:/go/src/app/entities
       - ./usecases:/go/src/app/usecases
+      - ./configs:/go/src/app/configs
+      - ./controllers:/go/src/app/controllers
   db:
     build:
       context: .
