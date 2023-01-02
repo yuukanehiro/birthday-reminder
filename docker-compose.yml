@@ -34,6 +34,7 @@ services:
       - ./usecases:/go/src/app/usecases
       - ./configs:/go/src/app/configs
       - ./controllers:/go/src/app/controllers
+      - ./routes:/go/src/app/routes
   db:
     build:
       context: .

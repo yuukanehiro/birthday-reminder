@@ -9,4 +9,6 @@ COPY ./ ${ROOT}
 WORKDIR ${ROOT}
 RUN go mod tidy \
   && go build
+
+
 CMD ["go", "run", "main.go"]
