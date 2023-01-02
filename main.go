@@ -2,19 +2,19 @@ package main
 
 import (
   "net/http"
-  "os"
-  "fmt"
+  "github.com/labstack/echo"
 )
 
 func main() {
-  err := http.ListenAndServe(
-    ":8080",
-    http.HandlerFunc(func(http_response_writer http.ResponseWriter, http_request *http.Request) {
-      fmt.Fprintf(http_response_writer, "hello, %s", http_request.URL.Path[1:])
-    }),
-  )
-  if err != nil {
-    fmt.Printf("failed to terminate server: %v", err)
-    os.Exit(1)
-  }
+    e := echo.New()
+    api := e.Group("/api/v1")
+    {
+      api.GET("/birth-days", func(c echo.Context) error {
+        return c.String(http.StatusOK, "birth days GET")
+      })
+      api.POST("/birth-days", func(c echo.Context) error {
+        return c.String(http.StatusOK, "birth days POST")
+      })
+    }
+    e.Logger.Fatal(e.Start(":8080"))
 }
