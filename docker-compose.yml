@@ -1,5 +1,6 @@
 version: '3.4'
 
+# 定義
 x-var: &POSTGRES_USER
   "docker"
 x-var: &POSTGRES_PASSWORD

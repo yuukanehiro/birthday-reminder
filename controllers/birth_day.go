@@ -13,19 +13,19 @@ type BirthDay struct {
 func GetBirthDays() echo.HandlerFunc {
   return func(c echo.Context) error {
     birth_days := []BirthDay {
-	  {Id: 1, Date: "1984 11/21"},
+      {Id: 1, Date: "1984 11/21"},
       {Id: 2, Date: "1984 11/22"},
-    }
-	return c.JSON(http.StatusOK, birth_days)
+	}
+    return c.JSON(http.StatusOK, birth_days)
   }
 }
 
 func PostBirthDays() echo.HandlerFunc {
-	return func(c echo.Context) error {
-	  birth_days := []BirthDay {
-		{Id: 1, Date: "1984 11/21"},
-		{Id: 2, Date: "1984 11/22"},
-	  }
-	  return c.JSON(http.StatusOK, birth_days)
-	}
+  return func(c echo.Context) error {
+    birth_days := []BirthDay {
+      {Id: 1, Date: "1984 11/21"},
+      {Id: 2, Date: "1984 11/22"},
+    }
+    return c.JSON(http.StatusOK, birth_days)
   }
+}
