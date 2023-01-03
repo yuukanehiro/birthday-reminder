@@ -1,11 +1,11 @@
 package Rdb
 
 import (
+  "birthday-reminder/packages/Domain/Domain"
   "fmt"
-  "gorm.io/driver/postgres"
   "gorm.io/gorm"
   "os"
-  "birthday-reminder/packages/Domain/Domain"
+  "gorm.io/driver/postgres"
 )
 
 var DB *gorm.DB

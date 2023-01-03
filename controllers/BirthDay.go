@@ -4,7 +4,12 @@ import(
   "net/http"
   "os"
   "github.com/labstack/echo"
+  "birthday-reminder/packages/Domain/Domain"
   "birthday-reminder/packages/Infrastructure/Repositories/Rdb"
+)
+
+var (
+	rdb_interface Domain.RdbInterface
 )
 
 type BirthDay struct {
