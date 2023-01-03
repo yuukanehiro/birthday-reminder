@@ -1,15 +1,17 @@
 version: '3.4'
 
 # 定義
-x-var: &POSTGRES_HOST
+x-var: &DB_RDBMS
+  "PostgreSql"
+x-var: &DB_HOST
   "db"
-x-var: &POSTGRES_PORT
+x-var: &DB_PORT
   "5432"
-x-var: &POSTGRES_USER
+x-var: &DB_USER
   "docker"
-x-var: &POSTGRES_PASSWORD
+x-var: &DB_PASSWORD
   "docker"
-x-var: &POSTGRES_DB
+x-var: &DB_DB
   "birthday_reminder"
 x-var: &TZ
   "Asia/Tokyo"
@@ -23,11 +25,11 @@ services:
       dockerfile: ./deployments/docker/golang/Dockerfile
     container_name: birthday-reminder-api
     environment:
-      POSTGRES_HOST: *POSTGRES_HOST
-      POSTGRES_PORT: *POSTGRES_PORT
-      POSTGRES_USER: *POSTGRES_USER
-      POSTGRES_PASSWORD: *POSTGRES_PASSWORD
-      POSTGRES_DB: *POSTGRES_DB
+      DB_HOST: *DB_HOST
+      DB_PORT: *DB_PORT
+      DB_USER: *DB_USER
+      DB_PASSWORD: *DB_PASSWORD
+      DB_DB: *DB_DB
       TZ: *TZ
       LANG: *LANG
     ports:
@@ -50,14 +52,14 @@ services:
       dockerfile: ./deployments/docker/db/Dockerfile
     container_name: birthday-reminder-db
     environment:
-      POSTGRES_USER: *POSTGRES_USER
-      POSTGRES_PASSWORD: *POSTGRES_PASSWORD
-      POSTGRES_DB: *POSTGRES_DB
+      DB_USER: *DB_USER
+      DB_PASSWORD: *DB_PASSWORD
+      DB_DB: *DB_DB
       TZ: *TZ
       LANG: *LANG
     ports:
       - 5432:5432
     volumes:
-      - ./deployments/data/db/data:/var/lib/postgresql/data
+      - ./deployments/data/db/data:/var/lib/DBql/data
       - ./deployments/docker/db/scripts:/docker-entrypoint-initdb.d
     restart: always
