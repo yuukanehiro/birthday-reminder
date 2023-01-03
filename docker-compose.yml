@@ -1,35 +1,67 @@
-version: '3'
+version: '3.4'
+
+# 定義
+x-var: &DB_RDBMS
+  "postgresql"
+x-var: &DB_HOST
+  "db"
+x-var: &DB_PORT
+  "5432"
+x-var: &DB_USER
+  "docker"
+x-var: &DB_PASSWORD
+  "docker"
+x-var: &DB_NAME
+  "birthday_reminder"
+x-var: &TZ
+  "Asia/Tokyo"
+x-var: &LANG
+  "ja_JP.utf8"
+
 services:
   api:
     build:
       context: .
-      dockerfile: ./docker/golang/Dockerfile
+      dockerfile: ./deployments/docker/golang/Dockerfile
     container_name: birthday-reminder-api
     environment:
-      POSTGRES_USER: docker
-      POSTGRES_PASSWORD: docker
-      POSTGRES_DB: birthday_reminder
-      TZ: "Asia/Tokyo"
-      LANG: "ja_JP.utf8"
+      DB_HOST: *DB_HOST
+      DB_PORT: *DB_PORT
+      DB_USER: *DB_USER
+      DB_PASSWORD: *DB_PASSWORD
+      DB_NAME: *DB_NAME
+      TZ: *TZ
+      LANG: *LANG
     ports:
       - 8080:8080
     tty: true
     volumes:
-      - ./app/src/main.go:/go/src/app/main.go
+      # .todo パスの指定を最小化。
+      # ./app/src:/go/src/appと定義するとエラーになる
+      - ./main.go:/go/src/app/main.go
+      - ./entities:/go/src/app/entities
+      - ./usecases:/go/src/app/usecases
+      - ./configs:/go/src/app/configs
+      - ./controllers:/go/src/app/controllers
+      - ./routes:/go/src/app/routes
+    depends_on:
+      - db
+    restart: always
   db:
     build:
       context: .
-      dockerfile: ./docker/db/Dockerfile
+      dockerfile: ./deployments/docker/db/Dockerfile
     container_name: birthday-reminder-db
     environment:
-      POSTGRES_USER: docker
-      POSTGRES_PASSWORD: docker
-      POSTGRES_DB: birthday_reminder
-      TZ: "Asia/Tokyo"
-      LANG: "ja_JP.utf8"
+      POSTGRES_USER: *DB_USER
+      POSTGRES_PASSWORD: *DB_PASSWORD
+      PGPASSWORD: *DB_PASSWORD
+      POSTGRES_DB: *DB_NAME
+      TZ: *TZ
+      LANG: *LANG
     ports:
       - 5432:5432
     volumes:
-      - ./data/db/data:/var/lib/postgresql/data
-      - ./docker/db/scripts:/docker-entrypoint-initdb.d
+      - ./deployments/data/db/data:/var/lib/DBql/data
+      - ./deployments/docker/db/scripts:/docker-entrypoint-initdb.d
     restart: always
