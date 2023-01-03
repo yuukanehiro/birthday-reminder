@@ -42,6 +42,8 @@ services:
       - ./configs:/go/src/app/configs
       - ./controllers:/go/src/app/controllers
       - ./routes:/go/src/app/routes
+    depends_on:
+      - db
   db:
     build:
       context: .

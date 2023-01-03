@@ -2,14 +2,13 @@ package main
 
 import (
   "birthday-reminder/routes"
-  "birthday-reminder/databases"
+  "birthday-reminder/databases/rdb"
 )
 
 
 func main() {
   e := routes.Init()
-
-  databases.InitDB()
+  rdb.ConnectDB()
 
   e.Logger.Fatal(e.Start(":8080"))
 }
