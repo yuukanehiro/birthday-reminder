@@ -13,6 +13,7 @@ var (
 
 func main() {
   e := routes.Init()
+  // todo. 環境変数直接ではなく、configファイルを経由して指定する
   rdb_interface = Rdb.NewRdb(os.Getenv("DB_RDBMS"))
   rdb_interface.ConnectDB()
 
