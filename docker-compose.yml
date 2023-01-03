@@ -1,6 +1,10 @@
 version: '3.4'
 
 # 定義
+x-var: &POSTGRES_HOST
+  "db"
+x-var: &POSTGRES_PORT
+  "5432"
 x-var: &POSTGRES_USER
   "docker"
 x-var: &POSTGRES_PASSWORD
@@ -19,6 +23,8 @@ services:
       dockerfile: ./deployments/docker/golang/Dockerfile
     container_name: birthday-reminder-api
     environment:
+      POSTGRES_HOST: *POSTGRES_HOST
+      POSTGRES_PORT: *POSTGRES_PORT
       POSTGRES_USER: *POSTGRES_USER
       POSTGRES_PASSWORD: *POSTGRES_PASSWORD
       POSTGRES_DB: *POSTGRES_DB
