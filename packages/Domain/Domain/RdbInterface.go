@@ -1,5 +1,9 @@
 package Domain
 
+import (
+  "gorm.io/gorm"
+)
+
 type RdbInterface interface {
-  ConnectDB()
+  ConnectDB() *gorm.DB
 }
