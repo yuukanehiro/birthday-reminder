@@ -10,7 +10,11 @@ import (
 
 type postgresql struct {}
 
-func NewRdb() Domain.RdbInterface {
+func NewRdb(rdbms_name string) Domain.RdbInterface {
+  // todo. mapで動的に切り替えられるようにする
+  if rdbms_name == "postgresql" {
+    return &postgresql{}
+  }
   return &postgresql{}
 }
 

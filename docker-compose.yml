@@ -2,7 +2,7 @@ version: '3.4'
 
 # 定義
 x-var: &DB_RDBMS
-  "PostgreSql"
+  "postgresql"
 x-var: &DB_HOST
   "db"
 x-var: &DB_PORT
@@ -46,6 +46,7 @@ services:
       - ./routes:/go/src/app/routes
     depends_on:
       - db
+    restart: always
   db:
     build:
       context: .
