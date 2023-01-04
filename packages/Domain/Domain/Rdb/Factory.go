@@ -11,5 +11,5 @@ func NewRdbFactory(rdbms_name string) RdbInterface {
   //   return &PostgreSql{}
   // }
   // return &MockDb{}
-  return new(repository_rdb.PostgreSql)
+  return repository_rdb.NewPostgreSql()
 }
