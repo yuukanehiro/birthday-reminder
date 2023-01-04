@@ -37,7 +37,7 @@ http://localhost:8080/api/v1/birth-day
 ```json:
 {
   "user_id": 1,
-  "Date": "2022-02-04"
+  "Date": "2022-01-04T00:00:00Z"
 }
 ```
 or
@@ -45,6 +45,6 @@ or
 {
   "id": 101,
   "user_id": 1,
-  "Date": "2022-02-04"
+  "Date": "2022-01-04T00:00:00Z"
 }
 ```
