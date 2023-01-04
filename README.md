@@ -1,6 +1,18 @@
 # birthday-reminder
  In order not to forget the birthdays of important people.
 
+## Usage
+Download Project.
+```bash:
+$ git clone https://github.com/yuukanehiro/birthday-reminder.git
+```
+Run Docker.
+```bash:
+$ cd birthday-reminder
+$ docker-compose build --no-cache
+$ docker-compose up -d
+```
+
 ## API
   
 GET  
