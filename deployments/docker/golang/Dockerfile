@@ -21,6 +21,3 @@ RUN set -eux && \
   go mod tidy && \
   go build
 CMD go run $APP_NAME
-
-
-
