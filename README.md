@@ -36,6 +36,13 @@ POST
 http://localhost:8080/api/v1/birth-day  
 ```json:
 {
+  "user_id": 1,
+  "Date": "2022-02-04"
+}
+```
+or
+```json:
+{
   "id": 101,
   "user_id": 1,
   "Date": "2022-02-04"
