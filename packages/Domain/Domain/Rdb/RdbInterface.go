@@ -1,4 +1,4 @@
-package Domain
+package Rdb
 
 import (
   "gorm.io/gorm"

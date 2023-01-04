@@ -2,25 +2,12 @@ package Rdb
 
 import (
   "fmt"
-  "gorm.io/driver/postgres"
   "gorm.io/gorm"
   "os"
-  "birthday-reminder/packages/Domain/Domain"
+  "gorm.io/driver/postgres"
 )
 
-var DB *gorm.DB
-
 type PostgreSql struct {}
-type MockDb struct {}
-
-func NewRdb(rdbms_name string) Domain.RdbInterface {
-  return &PostgreSql{}
-  // todo. mapで動的に切り替えられるようにする
-  // if rdbms_name == "postgresql" {
-  //   return &PostgreSql{}
-  // }
-  // return &MockDb{}
-}
 
 func (p PostgreSql) ConnectDB() *gorm.DB {
   dsn := fmt.Sprintf(
@@ -39,6 +26,3 @@ func (p PostgreSql) ConnectDB() *gorm.DB {
   return db
 }
 
-func (m MockDb) ConnectDB() {
-  //
-}

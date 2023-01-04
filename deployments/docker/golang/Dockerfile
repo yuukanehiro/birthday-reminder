@@ -1,7 +1,7 @@
 ##
 ## Build
 ##
-FROM golang:1.18-alpine3.16
+FROM golang:1.19-alpine
 
 ENV APP_NAME=birthday-reminder
 ENV ROOT=/go/src/app
@@ -11,7 +11,6 @@ ENV ENVIRONMENT="local"
 COPY ./ ${ROOT}
 WORKDIR ${ROOT}
 
-ENV GO111MODULE on
 RUN apk update && \
   apk --no-cache add git postgresql-client && \
   go get -u github.com/cosmtrek/air && \

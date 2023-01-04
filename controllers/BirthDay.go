@@ -4,7 +4,7 @@ import(
   "net/http"
   "os"
   "github.com/labstack/echo"
-  "birthday-reminder/packages/Infrastructure/Repositories/Rdb"
+  "birthday-reminder/packages/Domain/Domain/Rdb"
 )
 
 type BirthDay struct {
@@ -15,7 +15,7 @@ type BirthDay struct {
 
 func GetBirthDays() echo.HandlerFunc {
   return func(c echo.Context) error {
-    rdb_interface := Rdb.NewRdb(os.Getenv("DB_RDBMS"))
+    rdb_interface := Rdb.NewRdbFactory(os.Getenv("DB_RDBMS"))
     db := rdb_interface.ConnectDB()
     birth_days := []BirthDay{}
     db.Find(&birth_days)
