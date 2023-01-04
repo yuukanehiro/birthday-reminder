@@ -10,7 +10,7 @@ func Init() *echo.Echo {
   api := e.Group("/api/v1")
   {
     api.POST("/birth-day", controllers.CreateBirthDay())
-    api.GET("/birth-days", controllers.GetBirthDays())
+    api.GET("/birth-days", controllers.ListBirthDay())
   }
   return e
 }
