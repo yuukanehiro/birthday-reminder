@@ -9,6 +9,10 @@ import (
 
 type PostgreSql struct {}
 
+func NewPostgreSql() *PostgreSql {
+  return &PostgreSql{}
+}
+
 func (p PostgreSql) ConnectDB() *gorm.DB {
   dsn := fmt.Sprintf(
     "host=%s user=%s password=%s dbname=%s port=%s sslmode=disable TimeZone=Asia/Shanghai",
@@ -25,4 +29,3 @@ func (p PostgreSql) ConnectDB() *gorm.DB {
   }
   return db
 }
-
