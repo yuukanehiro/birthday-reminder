@@ -7,4 +7,4 @@ import (
 
 type CreateBirthDayInteractorInterface interface {
   Handle(c echo.Context) *Empty.Empty
-)
+}
