@@ -7,6 +7,11 @@ replace birthday-reminder/packages/MockInfrastructure/Repositories/Rdb => ./pack
 
 replace birthday-reminder/packages/Infrastructure/Repositories/BirthDay => ./packages/Infrastructure/Repositories/BirthDay
 
+replace birthday-reminder/packages/UseCase/BirthDay => ./packages/UseCase/BirthDay
+replace birthday-reminder/packages/Domain/Application/BirthDay => ./packages/Domain/Application/BirthDay
+
+
+
 replace birthday-reminder/packages/Domain/Domain/Rdb => ./packages/Domain/Domain/Rdb
 replace birthday-reminder/packages/Domain/Domain/BirthDay => ./packages/Domain/Domain/BirthDay
 replace birthday-reminder/packages/Domain/Domain/Empty => ./packages/Domain/Domain/Empty
