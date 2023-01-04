@@ -8,7 +8,15 @@ import(
   "birthday-reminder/packages/Domain/Domain/BirthDay"
 )
 
-func ListBirthDay() (birth_days []BirthDay.BirthDay) {
+type BirthDayRepository struct {
+}
+
+func NewBirthDayRepository() BirthDay.BirthDayRepositoryInterface {
+  return &BirthDayRepository{}
+}
+
+
+func (repository_birth_day BirthDayRepository) ListBirthDay() (birth_days []BirthDay.BirthDay) {
   rdb_interface := Rdb.NewRdbFactory(os.Getenv("DB_RDBMS"))
   db := rdb_interface.ConnectDB()
   birth_days = []BirthDay.BirthDay{}
@@ -16,7 +24,7 @@ func ListBirthDay() (birth_days []BirthDay.BirthDay) {
   return
 }
 
-func CreateBirthDay(c echo.Context) () {
+func (repository_birth_day BirthDayRepository) CreateBirthDay(c echo.Context) {
   rdb_interface := Rdb.NewRdbFactory(os.Getenv("DB_RDBMS"))
   db := rdb_interface.ConnectDB()
   birth_day := new(BirthDay.BirthDay)

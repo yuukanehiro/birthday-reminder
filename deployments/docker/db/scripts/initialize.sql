@@ -1,6 +1,6 @@
 CREATE TABLE users
 (
-  id BIGINT UNIQUE,
+  id SERIAL,
   password TEXT,
   insert_date TIMESTAMP WITH TIME ZONE,
   update_date TIMESTAMP WITH TIME ZONE,
@@ -10,7 +10,7 @@ INSERT INTO users (id, password) VALUES (1, 'secret');
 
 CREATE TABLE birth_days
 (
-  id BIGINT UNIQUE,
+  id SERIAL,
   user_id BIGINT,
   date DATE,
   insert_date TIMESTAMP WITH TIME ZONE,
