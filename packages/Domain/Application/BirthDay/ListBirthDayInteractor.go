@@ -1,14 +1,14 @@
 package BirthDay
 
 import (
-  interface_list_birth_day "birthday-reminder/packages/UseCase/BirthDay"
+  usecase_birth_day "birthday-reminder/packages/UseCase/BirthDay"
   repository_birth_day "birthday-reminder/packages/Infrastructure/Repositories/BirthDay"
   domain_birth_day "birthday-reminder/packages/Domain/Domain/BirthDay"
 )
 
 type ListBirthDayInteractor struct {}
 
-func NewListBirthDayInteractor() interface_list_birth_day.ListBirthDayInteractorInterface {
+func NewListBirthDayInteractor() usecase_birth_day.ListBirthDayInteractorInterface {
   return &ListBirthDayInteractor{}
 }
 
