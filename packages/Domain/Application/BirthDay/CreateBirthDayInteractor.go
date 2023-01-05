@@ -13,7 +13,6 @@ func NewCreateBirthDayInteractor(i_birth_day_repo domain_birth_day.BirthDayRepos
   return &CreateBirthDayInteractor{i_birth_day_repo}
 }
 
-func (interactor_create_birth_day CreateBirthDayInteractor) Handle() {
-  //interactor_create_birth_day.i_birth_day_repo.CreateBirthDay(birth_day)
-  //interactor_create_birth_day.i_birth_day_repo.CreateBirthDay()
+func (interactor_create_birth_day CreateBirthDayInteractor) Handle(dto usecase_create_birth_day.CreateBirthDayRequest) {
+  interactor_create_birth_day.i_birth_day_repo.CreateBirthDay(dto)
 }

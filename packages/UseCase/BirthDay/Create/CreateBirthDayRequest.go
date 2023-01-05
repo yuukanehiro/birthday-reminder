@@ -1,6 +1,6 @@
 package Create
 
 type CreateBirthDayRequest struct {
-  UserId int
-  Date string
+  UserId int  `json:"user_id"`
+  Date string `json:"date"`
 }

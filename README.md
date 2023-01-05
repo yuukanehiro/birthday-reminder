@@ -16,9 +16,12 @@ $ docker-compose up -d
 ```
 
 ## API
-  
+
+### 誕生日を配列で取得
 GET  
-http://localhost:8080/api/v1/birth-days
+http://localhost:8080/api/v1/birth-days/
+  
+Response
 ```json:
 [
   {
@@ -34,19 +37,18 @@ http://localhost:8080/api/v1/birth-days
 ]
 ```
 
+### 誕生日を登録
 POST  
-http://localhost:8080/api/v1/birth-day  
+http://localhost:8080/api/v1/birth-day/  
+  
+RequestBody
 ```json:
 {
   "user_id": 1,
   "Date": "2022-01-04T00:00:00Z"
 }
 ```
-or
+Response
 ```json:
-{
-  "id": 101,
-  "user_id": 1,
-  "Date": "2022-01-04T00:00:00Z"
-}
+{}
 ```
