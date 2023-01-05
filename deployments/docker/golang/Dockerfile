@@ -20,7 +20,7 @@ ARG GOARCH=amd64
 RUN set -eux && \
   go mod tidy && \
   go build -ldflags '-s -w'
-CMD go run $APP_NAME
+
 
 # ----------------------------------------
 FROM debian:bullseye-slim as deploy
