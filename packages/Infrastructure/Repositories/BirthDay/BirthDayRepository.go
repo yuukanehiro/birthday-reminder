@@ -35,8 +35,8 @@ func (repository_birth_day BirthDayRepository) CreateBirthDay(dto usecase_create
   defer db.Close()
 
   err := rdb.Exec("INSERT INTO birth_days (user_id, date) VALUES (?, ?)", dto.UserId, dto.Date)
-	if err != nil {
-		log.Print(err)
-		return
-	}
+  if err != nil {
+    log.Print(err)
+    return
+  }
 }

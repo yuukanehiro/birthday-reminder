@@ -21,15 +21,10 @@ func NewRouter(
 func (router Router) HandleBirthDayRequest(w http.ResponseWriter, r *http.Request) {
   switch r.Method {
     case "GET":
-	  router.i_birth_day_controller.ListBirthDay(w, r)
+      router.i_birth_day_controller.ListBirthDay(w, r)
     case "POST":
-	  router.i_birth_day_controller.CreateBirthDay(w, r)
+      router.i_birth_day_controller.CreateBirthDay(w, r)
     default:
-  	  w.WriteHeader(405)
+      w.WriteHeader(405)
   }
 }
-
-
-
-
-
