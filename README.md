@@ -39,7 +39,7 @@ Response
 
 ### 誕生日を登録
 POST  
-http://localhost:8080/api/v1/birth-day/  
+http://localhost:8080/api/v1/birth-days/  
   
 RequestBody
 ```json:
