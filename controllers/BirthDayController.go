@@ -32,8 +32,8 @@ func (controller_birthday BirthDayController) ListBirthDay(w http.ResponseWriter
   birth_days := controller_birthday.i_list_birth_day_interactor.Handle()
 
   birth_days_response := []usecase_list_birth_day.BirthDayResponse{}
-	for _, v := range birth_days {
-		birth_days_response = append(
+  for _, v := range birth_days {
+    birth_days_response = append(
       birth_days_response,
       usecase_list_birth_day.BirthDayResponse{
         Id: v.Id,
@@ -41,21 +41,21 @@ func (controller_birthday BirthDayController) ListBirthDay(w http.ResponseWriter
         Date: v.Date,
       },
     )
-	}
+  }
   output, _ := json.MarshalIndent(birth_days_response, "", "\t\t")
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(output)
+  w.Header().Set("Content-Type", "application/json")
+  w.Write(output)
 }
 
 func (controller_birthday BirthDayController) CreateBirthDay(w http.ResponseWriter, r *http.Request) {
-	body := make([]byte, r.ContentLength)
-	r.Body.Read(body)
-	var createBirthDayRequest usecase_create_birth_day.CreateBirthDayRequest
-	json.Unmarshal(body, &createBirthDayRequest)
+  body := make([]byte, r.ContentLength)
+  r.Body.Read(body)
+  var createBirthDayRequest usecase_create_birth_day.CreateBirthDayRequest
+  json.Unmarshal(body, &createBirthDayRequest)
   result := usecase_create_birth_day.CreateBirthDayRequest{UserId: createBirthDayRequest.UserId, Date: createBirthDayRequest.Date}
 
   controller_birthday.i_create_birth_day_interactor.Handle(result)
   output, _ := json.MarshalIndent(&Empty.Empty{}, "", "\t\t")
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(output)
+  w.Header().Set("Content-Type", "application/json")
+  w.Write(output)
 }
