@@ -5,10 +5,11 @@ import (
   usecase_list_birth_day "birthday-reminder/packages/UseCase/BirthDay/List"
   "log"
   "net/http"
+  "encoding/json"
 )
 
 type BirthDayControllerInterface interface {
-  ListBirthDay()
+  ListBirthDay(w http.ResponseWriter, r *http.Request)
   CreateBirthDay(w http.ResponseWriter, r *http.Request)
 }
 
@@ -27,10 +28,25 @@ func NewBirthDayController(
   }
 }
 
-func (controller_birthday BirthDayController) ListBirthDay() {
+func (controller_birthday BirthDayController) ListBirthDay(w http.ResponseWriter, r *http.Request) {
   birth_days := controller_birthday.i_list_birth_day_interactor.Handle()
   log.Print(birth_days)
   //return c.JSON(http.StatusOK, birth_days)
+
+  birth_days_response := []usecase_list_birth_day.BirthDayResponse{}
+	for _, v := range birth_days {
+		birth_days_response = append(
+      birth_days_response,
+      usecase_list_birth_day.BirthDayResponse{
+        Id: v.Id,
+        UserId: v.UserId,
+        Date: v.Date,
+      },
+    )
+	}
+  output, _ := json.MarshalIndent(birth_days_response, "", "\t\t")
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(output)
 }
 
 func (controller_birthday BirthDayController) CreateBirthDay(w http.ResponseWriter, r *http.Request) {

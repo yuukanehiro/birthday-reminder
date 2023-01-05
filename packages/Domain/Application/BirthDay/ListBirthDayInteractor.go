@@ -1,9 +1,9 @@
 package BirthDay
 
 import (
+  domain_birth_day "birthday-reminder/packages/Domain/Domain/BirthDay"
   usecase_list_birth_day "birthday-reminder/packages/UseCase/BirthDay/List"
   repository_birth_day "birthday-reminder/packages/Infrastructure/Repositories/BirthDay"
-  domain_birth_day "birthday-reminder/packages/Domain/Domain/BirthDay"
 )
 
 type ListBirthDayInteractor struct {}
