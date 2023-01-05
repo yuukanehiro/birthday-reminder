@@ -1,19 +1,19 @@
 package BirthDay
 
 import (
-  "github.com/labstack/echo"
+  domain_birth_day "birthday-reminder/packages/Domain/Domain/BirthDay"
   usecase_create_birth_day "birthday-reminder/packages/UseCase/BirthDay/Create"
-  repository_birth_day "birthday-reminder/packages/Infrastructure/Repositories/BirthDay"
-  "birthday-reminder/packages/Domain/Domain/Empty"
 )
 
-type CreateBirthDayInteractor struct {}
-
-func NewCreateBirthDayInteractor() usecase_create_birth_day.CreateBirthDayInteractorInterface {
-  return &CreateBirthDayInteractor{}
+type CreateBirthDayInteractor struct {
+  i_birth_day_repo domain_birth_day.BirthDayRepositoryInterface
 }
 
-func (interactor_create_birth_day CreateBirthDayInteractor) Handle(c echo.Context) *Empty.Empty {
-  interface_birth_day := repository_birth_day.NewBirthDayRepository()
-  return interface_birth_day.CreateBirthDay(c)
+func NewCreateBirthDayInteractor(i_birth_day_repo domain_birth_day.BirthDayRepositoryInterface) usecase_create_birth_day.CreateBirthDayInteractorInterface {
+  return &CreateBirthDayInteractor{i_birth_day_repo}
+}
+
+func (interactor_create_birth_day CreateBirthDayInteractor) Handle() {
+  //interactor_create_birth_day.i_birth_day_repo.CreateBirthDay(birth_day)
+  //interactor_create_birth_day.i_birth_day_repo.CreateBirthDay()
 }

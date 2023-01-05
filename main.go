@@ -6,11 +6,13 @@ import (
   "birthday-reminder/routes"
   "birthday-reminder/controllers"
   app_birth_day "birthday-reminder/packages/Domain/Application/BirthDay"
+  infra_repo_birth_day "birthday-reminder/packages/Infrastructure/Repositories/BirthDay"
 )
 
+var interface_birth_day = infra_repo_birth_day.NewBirthDayRepository()
 var controller_birthday = controllers.NewBirthDayController(
-  app_birth_day.NewListBirthDayInteractor(),
-  app_birth_day.NewCreateBirthDayInteractor(),
+  app_birth_day.NewListBirthDayInteractor(interface_birth_day),
+  app_birth_day.NewCreateBirthDayInteractor(interface_birth_day),
 )
 var router = routes.NewRouter(controller_birthday)
 

@@ -3,17 +3,19 @@ package BirthDay
 import (
   domain_birth_day "birthday-reminder/packages/Domain/Domain/BirthDay"
   usecase_list_birth_day "birthday-reminder/packages/UseCase/BirthDay/List"
-  repository_birth_day "birthday-reminder/packages/Infrastructure/Repositories/BirthDay"
 )
 
-type ListBirthDayInteractor struct {}
+type ListBirthDayInteractor struct {
+  i_birth_day_repo domain_birth_day.BirthDayRepositoryInterface
+}
 
-func NewListBirthDayInteractor() usecase_list_birth_day.ListBirthDayInteractorInterface {
-  return &ListBirthDayInteractor{}
+func NewListBirthDayInteractor(
+  i_birth_day_repo domain_birth_day.BirthDayRepositoryInterface,
+) usecase_list_birth_day.ListBirthDayInteractorInterface {
+  return &ListBirthDayInteractor{i_birth_day_repo}
 }
 
 func (interactor_list_birth_day ListBirthDayInteractor) Handle() (birth_days []domain_birth_day.BirthDay) {
-  interface_birth_day := repository_birth_day.NewBirthDayRepository()
-  birth_days = interface_birth_day.ListBirthDay()
+  birth_days = interactor_list_birth_day.i_birth_day_repo.ListBirthDay()
   return
 }
