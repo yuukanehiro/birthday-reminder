@@ -1,10 +1,10 @@
 package controllers
 
 import (
-	usecase_create_birth_day "birthday-reminder/packages/UseCase/BirthDay/Create"
-	usecase_list_birth_day "birthday-reminder/packages/UseCase/BirthDay/List"
-	"log"
-	"net/http"
+  usecase_create_birth_day "birthday-reminder/packages/UseCase/BirthDay/Create"
+  usecase_list_birth_day "birthday-reminder/packages/UseCase/BirthDay/List"
+  "log"
+  "net/http"
 )
 
 type BirthDayControllerInterface interface {
