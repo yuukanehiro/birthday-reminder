@@ -2,14 +2,14 @@ package BirthDay
 
 import (
   "github.com/labstack/echo"
-  usecase_birth_day "birthday-reminder/packages/UseCase/BirthDay"
+  usecase_create_birth_day "birthday-reminder/packages/UseCase/BirthDay/Create"
   repository_birth_day "birthday-reminder/packages/Infrastructure/Repositories/BirthDay"
   "birthday-reminder/packages/Domain/Domain/Empty"
 )
 
 type CreateBirthDayInteractor struct {}
 
-func NewCreateBirthDayInteractor() usecase_birth_day.CreateBirthDayInteractorInterface {
+func NewCreateBirthDayInteractor() usecase_create_birth_day.CreateBirthDayInteractorInterface {
   return &CreateBirthDayInteractor{}
 }
 
