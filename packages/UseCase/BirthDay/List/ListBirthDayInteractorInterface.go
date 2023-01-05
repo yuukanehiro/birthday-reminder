@@ -1,4 +1,4 @@
-package BirthDay
+package List
 
 import (
   domain_birth_day "birthday-reminder/packages/Domain/Domain/BirthDay"

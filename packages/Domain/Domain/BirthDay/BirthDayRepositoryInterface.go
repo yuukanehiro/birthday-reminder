@@ -1,11 +1,10 @@
 package BirthDay
 
-import(
-  "github.com/labstack/echo"
-  "birthday-reminder/packages/Domain/Domain/Empty"
+import (
+  usecase_create_birth_day "birthday-reminder/packages/UseCase/BirthDay/Create"
 )
 
 type BirthDayRepositoryInterface interface {
   ListBirthDay() (birth_days []BirthDay)
-  CreateBirthDay(c echo.Context) *Empty.Empty
+  CreateBirthDay(dto usecase_create_birth_day.CreateBirthDayRequest)
 }
