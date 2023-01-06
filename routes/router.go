@@ -29,7 +29,7 @@ func proxy(router Router, w http.ResponseWriter, r *http.Request) Response.ApiRe
     case "POST":
 	  return router.i_birth_day_controller.CreateBirthDay(w, r)
     default:
-      return router.i_birth_day_controller.ListBirthDay(w, r)
+      return Response.NewMethodNotAllowedResponse()
   }
 }
 

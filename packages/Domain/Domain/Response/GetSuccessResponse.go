@@ -17,12 +17,12 @@ func NewGetSuccessResponse(data interface{}) ApiResponseInterface {
   return &GetSuccessResponse {
     Timestamp: Timestamp.GetNowTimeByISO8601Format(),
     StatusCode: http.StatusOK,
-    Message: "",
+    Message: http.StatusText(http.StatusOK),
     Errors: []Error{},
     Data: data,
   }
 }
 
 func (r GetSuccessResponse) GetStatusCode() int {
-	return r.StatusCode
-  }
+  return r.StatusCode
+}
