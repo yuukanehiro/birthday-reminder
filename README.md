@@ -51,7 +51,7 @@ RequestBody
 ```json:
 {
   "user_id": 1,
-  "date": "2022-01-04T00:00:00Z"
+  "date": "2022-01-04"
 }
 ```
 Response
