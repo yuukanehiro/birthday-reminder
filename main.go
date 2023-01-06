@@ -23,9 +23,8 @@ var router = routes.NewRouter(controller_birthday)
 func main() {
   cfg, err := config.NewConfig()
   if err != nil {
-    log.Fatalf("failed to listen port. %v", err)
+    log.Fatalf("failed to load config. %v", err)
   }
-  log.Print(cfg.WEB_PORT)
   server := http.Server{
     Addr: fmt.Sprintf(":%d", cfg.WEB_PORT),
   }

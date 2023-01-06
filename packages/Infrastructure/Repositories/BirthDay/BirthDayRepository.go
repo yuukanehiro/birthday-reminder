@@ -19,7 +19,7 @@ func (repository_birth_day BirthDayRepository) ListBirthDay() (birth_days []doma
   // todo. 共通処理化
   cfg, err := config.NewConfig()
   if err != nil {
-    log.Fatalf("failed to listen port. %v", err)
+    log.Fatalf("failed load config. %v", err)
   }
   rdb_interface := Rdb.NewRdbFactory(cfg.DB_RDBMS)
   rdb := rdb_interface.ConnectDB()
@@ -35,7 +35,7 @@ func (repository_birth_day BirthDayRepository) CreateBirthDay(dto usecase_create
   // todo. 共通処理化
   cfg, err := config.NewConfig()
   if err != nil {
-    log.Fatalf("failed to listen port. %v", err)
+    log.Fatalf("failed load config. %v", err)
   }
   rdb_interface := Rdb.NewRdbFactory(cfg.DB_RDBMS)
   rdb := rdb_interface.ConnectDB()
