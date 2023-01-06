@@ -26,18 +26,18 @@ Response
 {
   "timestamp": "2022-01-06 10:10:10",
   "status_code": 200,
-  "message": "Ok",
+  "message": "",
   "data": [
-  	{
-  	  "id": 1,
-  	  "user_id": 1,
-  	  "date": "2018-10-20T00:00:00Z"
-  	},
-  	{
-  	  "id": 2,
-  	  "user_id": 1,
-  	  "date": "2018-10-21T00:00:00Z"
-  	}
+    {
+      "id": 1,
+      "user_id": 1,
+      "date": "2018-10-20T00:00:00Z"
+    },
+    {
+      "id": 2,
+      "user_id": 1,
+      "date": "2018-10-21T00:00:00Z"
+    }
   ]
 }
 ```
