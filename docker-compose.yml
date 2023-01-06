@@ -39,13 +39,6 @@ services:
     ports:
       - 8080:8080
     tty: true
-    volumes:
-      # .todo パスの指定を最小化。
-      # ./app/src:/go/src/appと定義するとエラーになる
-      - ./main.go:/go/src/app/main.go
-      - ./config:/go/src/app/config
-      - ./controllers:/go/src/app/controllers
-      - ./routes:/go/src/app/routes
     depends_on:
       - db
     restart: always
