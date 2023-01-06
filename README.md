@@ -26,7 +26,7 @@ Response
 {
   "timestamp": "2023-01-06T19:21:44+09:00",
   "status_code": 200,
-  "message": "",
+  "message": "OK",
   "errors": [],
   "data": [
     {
@@ -59,7 +59,7 @@ Response
 {
   "timestamp": "2023-01-06T22:58:37+09:00",
   "status_code": 201,
-  "message": "",
+  "message": "Created",
   "errors": [],
   "data": []
 }
