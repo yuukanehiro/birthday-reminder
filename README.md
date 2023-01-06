@@ -49,10 +49,16 @@ http://localhost:8080/api/v1/birth-days/
   
 RequestBody
 ```json:
-{
-  "user_id": 1,
-  "date": "2022-01-04"
-}
+[
+  {
+    "user_id": 1,
+    "date": "2022-01-04"
+  },
+  {
+    "user_id": 1,
+    "date": "2022-01-05"
+  }
+]
 ```
 Response
 ```json:

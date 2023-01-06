@@ -1,5 +1,5 @@
 package Create
 
 type CreateBirthDayInteractorInterface interface {
-  Handle(CreateBirthDayRequest)
+  Handle(birth_days_request []CreateBirthDayRequest)
 }
