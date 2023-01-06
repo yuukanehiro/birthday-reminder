@@ -24,7 +24,7 @@ http://localhost:8080/api/v1/birth-days/
 Response
 ```json:
 {
-  "timestamp": "2022-01-06 10:10:10",
+  "timestamp": "2023-01-06T19:21:44+09:00",
   "status_code": 200,
   "message": "",
   "errors": [],
