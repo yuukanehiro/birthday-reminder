@@ -14,7 +14,7 @@ import (
 )
 
 var cfg = getConfig()
-var rdb = connectDB(cfg)
+var rdb = newRDB(cfg)
 var repo_birth_day = infra_repo_birth_day.NewBirthDayRepository(rdb)
 var controller_birthday = controllers.NewBirthDayController(
   app_birth_day.NewListBirthDayInteractor(repo_birth_day),
@@ -36,7 +36,7 @@ func main() {
 }
 
 // create gorm instance
-func connectDB(cfg *config.Config) (*gorm.DB) {
+func newRDB(cfg *config.Config) (*gorm.DB) {
   rdb_interface := domain_rdb.NewRdbFactory(cfg.DB_RDBMS)
   return rdb_interface.ConnectDB()
 }
