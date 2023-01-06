@@ -11,6 +11,7 @@ import (
   infra_repo_birth_day "birthday-reminder/packages/Infrastructure/Repositories/BirthDay"
 )
 
+
 var repo_birth_day = infra_repo_birth_day.NewBirthDayRepository()
 var controller_birthday = controllers.NewBirthDayController(
   app_birth_day.NewListBirthDayInteractor(repo_birth_day),
