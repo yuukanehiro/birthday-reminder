@@ -5,7 +5,7 @@ import (
 )
 
 type Config struct {
-  Env         string `env:"ENVIRONMENT" envDefault:"local"`
+  ENVIRONMENT string `env:"ENVIRONMENT" envDefault:"local"`
   WEB_PORT    int    `env:"WEB_PORT" envDefault:"8080"`
   DB_HOST     string `env:"DB_HOST" envDefault:"127.0.0.1"`
   DB_PORT     int    `env:"DB_PORT" envDefault:"3306"`
