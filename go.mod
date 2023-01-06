@@ -20,5 +20,5 @@ replace birthday-reminder/packages/Domain/Domain/Empty => ./packages/Domain/Doma
 replace birthday-reminder/controllers => ./controllers
 
 replace birthday-reminder/routes => ./routes
-
+replace birthday-reminder/config => ./config
 

@@ -1,18 +1,20 @@
 version: '3.4'
 
 # 定義
-x-var: &DB_RDBMS
-  "postgresql"
+x-var: &WEB_PORT
+  8080
 x-var: &DB_HOST
   "db"
 x-var: &DB_PORT
-  "5432"
+  5432
 x-var: &DB_USER
   "docker"
 x-var: &DB_PASSWORD
   "docker"
 x-var: &DB_NAME
   "birthday_reminder"
+x-var: &DB_RDBMS
+  "postgresql"
 x-var: &TZ
   "Asia/Tokyo"
 x-var: &LANG
@@ -25,11 +27,13 @@ services:
       dockerfile: ./deployments/docker/golang/Dockerfile
     container_name: birthday-reminder-api
     environment:
+      WEB_PORT: *WEB_PORT
       DB_HOST: *DB_HOST
       DB_PORT: *DB_PORT
       DB_USER: *DB_USER
       DB_PASSWORD: *DB_PASSWORD
       DB_NAME: *DB_NAME
+      DB_RDBMS: *DB_RDBMS
       TZ: *TZ
       LANG: *LANG
     ports:
