@@ -38,6 +38,7 @@ func main() {
   server.ListenAndServe()
 }
 
+// create gorm instance
 func connectDB() (*gorm.DB) {
   cfg, err := config.NewConfig()
   if err != nil {
