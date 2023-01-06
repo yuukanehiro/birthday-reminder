@@ -1,6 +1,7 @@
 package config
 
 import (
+  "log"
   "github.com/caarlos0/env/v6"
 )
 
@@ -15,9 +16,20 @@ type Config struct {
   DB_RDBMS    string `env:"DB_RDBMS" envDefault:"postgresql"`
 }
 
-func NewConfig() (*Config, error) {
+var err error
+
+// construct
+func NewConfig() (config *Config) {
+  config, err = parseConfig()
+  if err != nil {
+    log.Fatalf("failed load config. %v", err)
+  }
+  return
+}
+
+func parseConfig() (*Config, error) {
   config := &Config{}
-  if err := env.Parse(config); err != nil {
+  if err = env.Parse(config); err != nil {
     return nil, err
   }
   return config, nil

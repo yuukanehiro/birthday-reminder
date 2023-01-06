@@ -2,7 +2,6 @@ package Rdb
 
 import (
   "fmt"
-  "log"
   "gorm.io/gorm"
   "gorm.io/driver/postgres"
   "birthday-reminder/config"
@@ -17,10 +16,7 @@ func NewPostgreSql() *PostgreSql {
 
 // create gorm instance for PostgreSQL
 func (p PostgreSql) ConnectDB() *gorm.DB {
-  cfg, err := config.NewConfig()
-  if err != nil {
-    log.Fatalf("failed load config.")
-  }
+  cfg := config.NewConfig()
   dsn := fmt.Sprintf(
     "host=%s user=%s password=%s dbname=%s port=%d sslmode=disable TimeZone=Asia/Shanghai",
     cfg.DB_HOST,

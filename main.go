@@ -2,7 +2,6 @@ package main
 
 import (
   "fmt"
-  "log"
   "net/http"
   "gorm.io/gorm"
   "birthday-reminder/config"
@@ -13,7 +12,7 @@ import (
   infra_repo_birth_day "birthday-reminder/packages/Infrastructure/Repositories/BirthDay"
 )
 
-var cfg = getConfig()
+var cfg = config.NewConfig()
 var rdb = newRDB(cfg)
 var repo_birth_day = infra_repo_birth_day.NewBirthDayRepository(rdb)
 var controller_birthday = controllers.NewBirthDayController(
@@ -39,12 +38,4 @@ func main() {
 func newRDB(cfg *config.Config) (*gorm.DB) {
   rdb_interface := domain_rdb.NewRdbFactory(cfg.DB_RDBMS)
   return rdb_interface.ConnectDB()
-}
-
-func getConfig() (cfg *config.Config) {
-  cfg, err := config.NewConfig()
-  if err != nil {
-    log.Fatalf("failed load config. %v", err)
-  }
-  return
 }
