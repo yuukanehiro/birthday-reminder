@@ -13,7 +13,7 @@ func JsonDecode[T any](r *http.Request, inputData *T) {
   if err != nil {
   	fmt.Println(err)
   }
-  // 最後は閉じる
+  // finally must close
   defer r.Body.Close()
   err = json.Unmarshal(body, &inputData)
   if err != nil {
