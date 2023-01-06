@@ -31,10 +31,10 @@ func main() {
     Addr: fmt.Sprintf(":%d", cfg.WEB_PORT),
   }
   http.HandleFunc("/api/v1/birth-days/", router.HandleBirthDayRequest)
-  // DB切断
+  // Finally disconnect DB
   db, _ := rdb.DB()
   defer db.Close()
-  // WebサーバListen
+  // Run Web Server
   server.ListenAndServe()
 }
 
