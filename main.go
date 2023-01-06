@@ -11,11 +11,10 @@ import (
   infra_repo_birth_day "birthday-reminder/packages/Infrastructure/Repositories/BirthDay"
 )
 
-
-var interface_birth_day = infra_repo_birth_day.NewBirthDayRepository()
+var birth_day_repo = infra_repo_birth_day.NewBirthDayRepository()
 var controller_birthday = controllers.NewBirthDayController(
-  app_birth_day.NewListBirthDayInteractor(interface_birth_day),
-  app_birth_day.NewCreateBirthDayInteractor(interface_birth_day),
+  app_birth_day.NewListBirthDayInteractor(birth_day_repo),
+  app_birth_day.NewCreateBirthDayInteractor(birth_day_repo),
 )
 var router = routes.NewRouter(controller_birthday)
 
