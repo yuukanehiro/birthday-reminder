@@ -57,8 +57,8 @@ RequestBody
 Response
 ```json:
 {
-  "timestamp": "2023-01-06T19:21:44+09:00",
-  "status_code": 200,
+  "timestamp": "2023-01-06T22:58:37+09:00",
+  "status_code": 201,
   "message": "",
   "errors": [],
   "data": []
