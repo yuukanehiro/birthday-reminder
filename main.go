@@ -13,6 +13,7 @@ import (
   infra_repo_birth_day "birthday-reminder/packages/Infrastructure/Repositories/BirthDay"
 )
 
+
 var rdb = connectDB()
 var repo_birth_day = infra_repo_birth_day.NewBirthDayRepository(rdb)
 var controller_birthday = controllers.NewBirthDayController(
