@@ -25,6 +25,8 @@ func (repository_birth_day BirthDayRepository) ListBirthDay() (birth_days []doma
 }
 
 // create birth_day
-func (repository_birth_day BirthDayRepository) CreateBirthDay(dto usecase_create_birth_day.CreateBirthDayRequest) {
-  repository_birth_day.rdb.Exec("INSERT INTO birth_days (user_id, date) VALUES (?, ?)", dto.UserId, dto.Date)
+func (repository_birth_day BirthDayRepository) CreateBirthDay(birth_days_request []usecase_create_birth_day.CreateBirthDayRequest) {
+  for _, v := range birth_days_request {
+    repository_birth_day.rdb.Exec("INSERT INTO birth_days (user_id, date) VALUES (?, ?)", v.UserId, v.Date)
+  }
 }

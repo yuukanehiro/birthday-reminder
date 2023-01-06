@@ -4,8 +4,8 @@ import (
   usecase_create_birth_day "birthday-reminder/packages/UseCase/BirthDay/Create"
   usecase_list_birth_day "birthday-reminder/packages/UseCase/BirthDay/List"
   "birthday-reminder/packages/Domain/Domain/Response"
+  "birthday-reminder/packages/Domain/Domain/Request"
   "net/http"
-  "encoding/json"
 )
 
 type BirthDayControllerInterface interface {
@@ -47,14 +47,10 @@ func (controller_birthday BirthDayController) ListBirthDay(w http.ResponseWriter
   return Response.NewGetSuccessResponse(birth_days_response)
 }
 
-// create birth_day
+// create birth_days
 func (controller_birthday BirthDayController) CreateBirthDay(w http.ResponseWriter, r *http.Request) (Response.ApiResponseInterface) {
-  body := make([]byte, r.ContentLength)
-  r.Body.Read(body)
-  var createBirthDayRequest usecase_create_birth_day.CreateBirthDayRequest
-  json.Unmarshal(body, &createBirthDayRequest)
-  result := usecase_create_birth_day.CreateBirthDayRequest{UserId: createBirthDayRequest.UserId, Date: createBirthDayRequest.Date}
-
-  controller_birthday.i_create_birth_day_interactor.Handle(result)
+  input_data := []usecase_create_birth_day.CreateBirthDayRequest{}
+  Request.JsonDecode(r, &input_data)
+  controller_birthday.i_create_birth_day_interactor.Handle(input_data)
   return Response.NewCreateSuccessResponse()
 }
