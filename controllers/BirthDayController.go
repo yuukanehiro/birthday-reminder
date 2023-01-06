@@ -18,6 +18,7 @@ type BirthDayController struct {
   i_create_birth_day_interactor usecase_create_birth_day.CreateBirthDayInteractorInterface
 }
 
+// construct
 func NewBirthDayController(
   i_list_birth_day_interactor usecase_list_birth_day.ListBirthDayInteractorInterface,
   i_create_birth_day_interactor usecase_create_birth_day.CreateBirthDayInteractorInterface,
@@ -28,6 +29,7 @@ func NewBirthDayController(
   }
 }
 
+// list birth_day
 func (controller_birthday BirthDayController) ListBirthDay(w http.ResponseWriter, r *http.Request) {
   birth_days := controller_birthday.i_list_birth_day_interactor.Handle()
 
@@ -47,6 +49,7 @@ func (controller_birthday BirthDayController) ListBirthDay(w http.ResponseWriter
   w.Write(output)
 }
 
+// create birth_day
 func (controller_birthday BirthDayController) CreateBirthDay(w http.ResponseWriter, r *http.Request) {
   body := make([]byte, r.ContentLength)
   r.Body.Read(body)

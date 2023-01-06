@@ -5,7 +5,3 @@ type BirthDayResponse struct {
   UserId int  `json:"user_id"       gorm:"not null;type:int"`
   Date string `json:"date"          gorm:"not null;type:varchar(10)"`
 }
-
-type BirthDaysResponse struct {
-  BirthDays []BirthDayResponse
-}

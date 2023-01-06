@@ -10,10 +10,12 @@ import (
 
 type PostgreSql struct {}
 
+// construct
 func NewPostgreSql() *PostgreSql {
   return &PostgreSql{}
 }
 
+// create gorm instance for PostgreSQL
 func (p PostgreSql) ConnectDB() *gorm.DB {
   cfg, err := config.NewConfig()
   if err != nil {

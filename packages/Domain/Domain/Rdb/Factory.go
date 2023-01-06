@@ -4,6 +4,7 @@ import (
   repository_rdb "birthday-reminder/packages/Infrastructure/Repositories/Rdb"
 )
 
+// factory
 func NewRdbFactory(rdbms_name string) RdbInterface {
   // todo. mapで動的に切り替えられるようにする。ifやswitchは絶対やめたい
   // if rdbms_name == "postgresql" {
