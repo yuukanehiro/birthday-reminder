@@ -23,18 +23,23 @@ http://localhost:8080/api/v1/birth-days/
   
 Response
 ```json:
-[
-  {
-    "id": 1,
-    "user_id": 1,
-    "date": "2018-10-20T00:00:00Z"
-  },
-  {
-    "id": 2,
-    "user_id": 1,
-    "date": "2018-10-21T00:00:00Z"
-  }
-]
+{
+  "timestamp": "2022-01-06 10:10:10",
+  "status_code": 200,
+  "message": "Ok",
+  "data": [
+  	{
+  	  "id": 1,
+  	  "user_id": 1,
+  	  "date": "2018-10-20T00:00:00Z"
+  	},
+  	{
+  	  "id": 2,
+  	  "user_id": 1,
+  	  "date": "2018-10-21T00:00:00Z"
+  	}
+  ]
+}
 ```
 
 ### 誕生日を登録
@@ -50,5 +55,11 @@ RequestBody
 ```
 Response
 ```json:
-{}
+{
+  "timestamp": "2023-01-06T19:21:44+09:00",
+  "status_code": 200,
+  "message": "",
+  "errors": [],
+  "data": []
+}
 ```

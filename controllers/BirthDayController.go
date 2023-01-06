@@ -9,8 +9,8 @@ import (
 )
 
 type BirthDayControllerInterface interface {
-  ListBirthDay(w http.ResponseWriter, r *http.Request)
-  CreateBirthDay(w http.ResponseWriter, r *http.Request)
+  ListBirthDay(w http.ResponseWriter, r *http.Request) (birth_days_response []usecase_list_birth_day.BirthDayResponse)
+  CreateBirthDay(w http.ResponseWriter, r *http.Request) []Empty.Empty
 }
 
 type BirthDayController struct {
@@ -30,10 +30,10 @@ func NewBirthDayController(
 }
 
 // list birth_day
-func (controller_birthday BirthDayController) ListBirthDay(w http.ResponseWriter, r *http.Request) {
+func (controller_birthday BirthDayController) ListBirthDay(w http.ResponseWriter, r *http.Request) (birth_days_response []usecase_list_birth_day.BirthDayResponse) {
   birth_days := controller_birthday.i_list_birth_day_interactor.Handle()
 
-  birth_days_response := []usecase_list_birth_day.BirthDayResponse{}
+  birth_days_response = []usecase_list_birth_day.BirthDayResponse{}
   for _, v := range birth_days {
     birth_days_response = append(
       birth_days_response,
@@ -44,13 +44,11 @@ func (controller_birthday BirthDayController) ListBirthDay(w http.ResponseWriter
       },
     )
   }
-  output, _ := json.MarshalIndent(birth_days_response, "", "\t\t")
-  w.Header().Set("Content-Type", "application/json")
-  w.Write(output)
+  return
 }
 
 // create birth_day
-func (controller_birthday BirthDayController) CreateBirthDay(w http.ResponseWriter, r *http.Request) {
+func (controller_birthday BirthDayController) CreateBirthDay(w http.ResponseWriter, r *http.Request) []Empty.Empty {
   body := make([]byte, r.ContentLength)
   r.Body.Read(body)
   var createBirthDayRequest usecase_create_birth_day.CreateBirthDayRequest
@@ -58,7 +56,5 @@ func (controller_birthday BirthDayController) CreateBirthDay(w http.ResponseWrit
   result := usecase_create_birth_day.CreateBirthDayRequest{UserId: createBirthDayRequest.UserId, Date: createBirthDayRequest.Date}
 
   controller_birthday.i_create_birth_day_interactor.Handle(result)
-  output, _ := json.MarshalIndent(&Empty.Empty{}, "", "\t\t")
-  w.Header().Set("Content-Type", "application/json")
-  w.Write(output)
+  return []Empty.Empty{}
 }
