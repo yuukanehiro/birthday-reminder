@@ -27,6 +27,7 @@ Response
   "timestamp": "2022-01-06 10:10:10",
   "status_code": 200,
   "message": "",
+  "errors": [],
   "data": [
     {
       "id": 1,
