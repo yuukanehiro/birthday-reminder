@@ -13,7 +13,6 @@ import (
   infra_repo_birth_day "birthday-reminder/packages/Infrastructure/Repositories/BirthDay"
 )
 
-
 var rdb = connectDB()
 var repo_birth_day = infra_repo_birth_day.NewBirthDayRepository(rdb)
 var controller_birthday = controllers.NewBirthDayController(
@@ -39,12 +38,11 @@ func main() {
   server.ListenAndServe()
 }
 
-func connectDB() (rdb *gorm.DB) {
+func connectDB() (*gorm.DB) {
   cfg, err := config.NewConfig()
   if err != nil {
     log.Fatalf("failed load config. %v", err)
   }
   rdb_interface := domain_rdb.NewRdbFactory(cfg.DB_RDBMS)
-  rdb = rdb_interface.ConnectDB()
-  return
+  return rdb_interface.ConnectDB()
 }
