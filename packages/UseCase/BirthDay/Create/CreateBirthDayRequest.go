@@ -25,26 +25,26 @@ type CreateBirthDayRequestValidates struct {
 var validate *validator.Validate
 
 func IsValid(req []CreateBirthDayRequestValidate) (error_array []Response.Error) {
-	validate = validator.New()
+  validate = validator.New()
   validate.RegisterValidation("is_date", IsDate)
-	return validateStruct(req)
+  return validateStruct(req)
 }
 
 func validateStruct(req []CreateBirthDayRequestValidate) (error_array []Response.Error) {
   requests := CreateBirthDayRequestValidates{Elements: req}
 	err := validate.Struct(requests)
-	if err != nil {
-		if _, ok := err.(*validator.InvalidValidationError); ok {
-			return
-		}
-		for _, err := range err.(validator.ValidationErrors) {
+  if err != nil {
+    if _, ok := err.(*validator.InvalidValidationError); ok {
+      return
+    }
+    for _, err := range err.(validator.ValidationErrors) {
       error_array = append(error_array, Response.Error{
         Message: fmt.Sprintf("Validation Error. Property:%v Value:%v", err.StructField(), err.Value()),
         Property: fmt.Sprintf("%v", err.Field()),
       })
-		}
-		return
-	}
+    }
+    return
+  }
   return error_array
 }
 
