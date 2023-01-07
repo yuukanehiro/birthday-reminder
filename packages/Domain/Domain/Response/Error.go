@@ -1,6 +1,6 @@
 package Response
 
 type Error struct {
-  message string
-  property string
+  Message string
+  Property string
 }
