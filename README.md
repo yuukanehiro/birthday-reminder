@@ -80,12 +80,12 @@ Response
   "message": "Bad Request",
   "errors": [
     {
-      "Message": "Validation Error. Property:UserId Value:0",
-      "Property": "UserId"
+      "message": "Validation Error. Property:UserId Value:0",
+      "property": "UserId"
     },
     {
-      "Message": "Validation Error. Property:Date Value:BadDate2025-10Xxx-07",
-      "Property": "Date"
+      "message": "Validation Error. Property:Date Value:BadDate2025-10Xxx-07",
+      "property": "Date"
     }
   ],
   "data": []
