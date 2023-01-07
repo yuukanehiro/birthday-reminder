@@ -7,9 +7,9 @@ import (
   "birthday-reminder/config"
   "birthday-reminder/routes"
   "birthday-reminder/controllers"
-  domain_rdb "birthday-reminder/packages/Domain/Domain/Rdb"
-  app_birth_day "birthday-reminder/packages/Domain/Application/BirthDay"
   infra_repo_birth_day "birthday-reminder/packages/Infrastructure/Repositories/BirthDay"
+  infra_repo_Rdb "birthday-reminder/packages/Infrastructure/Repositories/Rdb"
+  app_birth_day "birthday-reminder/packages/Domain/Application/BirthDay"
 )
 
 var cfg = config.NewConfig()
@@ -36,6 +36,6 @@ func main() {
 
 // create gorm instance
 func newRDB(cfg *config.Config) (*gorm.DB) {
-  rdb_interface := domain_rdb.NewRdbFactory(cfg.DB_RDBMS)
-  return rdb_interface.ConnectDB()
+  rdb := infra_repo_Rdb.NewRdb()
+  return rdb.ConnectDB(cfg)
 }
