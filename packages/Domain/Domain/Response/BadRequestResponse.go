@@ -5,7 +5,7 @@ import (
   "birthday-reminder/packages/Domain/Domain/Timestamp"
 )
 
-type MethodNotAllowedResponse struct {
+type BadRequestResponse struct {
   Timestamp  string `json:"timestamp"`
   StatusCode int `json:"status_code"`
   Message    string `json:"message"`
@@ -13,16 +13,16 @@ type MethodNotAllowedResponse struct {
   Data       interface{} `json:"data"`
 }
 
-func NewMethodNotAllowedResponse() ApiResponseInterface {
-  return &MethodNotAllowedResponse {
+func NewBadRequestResponse(errors []Error) ApiResponseInterface {
+  return &BadRequestResponse {
     Timestamp: Timestamp.GetNowTimeByISO8601Format(),
-    StatusCode: http.StatusMethodNotAllowed,
-    Message: http.StatusText(http.StatusMethodNotAllowed),
-    Errors: []Error{},
+    StatusCode: http.StatusBadRequest,
+    Message: http.StatusText(http.StatusBadRequest),
+    Errors: errors,
     Data: []Empty{},
   }
 }
 
-func (r MethodNotAllowedResponse) GetStatusCode() int {
+func (r BadRequestResponse) GetStatusCode() int {
   return r.StatusCode
 }

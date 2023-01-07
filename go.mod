@@ -17,6 +17,7 @@ replace birthday-reminder/packages/Domain/Domain/Rdb => ./packages/Domain/Domain
 replace birthday-reminder/packages/Domain/Domain/BirthDay => ./packages/Domain/Domain/BirthDay
 replace birthday-reminder/packages/Domain/Domain/Empty => ./packages/Domain/Domain/Empty
 replace birthday-reminder/packages/Domain/Domain/Timestamp => ./packages/Domain/Domain/Timestamp
+replace birthday-reminder/packages/Domain/Domain/Date => ./packages/Domain/Domain/Date
 
 replace birthday-reminder/controllers => ./controllers
 
