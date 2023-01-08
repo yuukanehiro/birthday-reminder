@@ -5,6 +5,7 @@ import (
   "time"
   "fmt"
   "birthday-reminder/packages/Domain/Domain/Response"
+  "birthday-reminder/config"
 )
 
 type CreateBirthDayRequest struct {
@@ -41,10 +42,11 @@ func validateStruct(valid_format []CreateBirthDayRequestValidate) (error_array [
     if _, ok := err.(*validator.InvalidValidationError); ok {
       return
     }
+    cfg := config.NewConfig()
     for _, err := range err.(validator.ValidationErrors) {
       error_array = append(error_array, Response.Error{
-        Message: fmt.Sprintf("Validation Error. Property:%v Value:%v", err.StructField(), err.Value()),
-        Property: fmt.Sprintf("%v", err.Field()),
+        Message: fmt.Sprintf(cfg.VALIDATE_REQUEST_BODY_MESSAGE, err.StructNamespace(), err.Value()),
+        Property: fmt.Sprintf(cfg.VALIDATE_REQUEST_BODY_PROPERTY, err.Field()),
       })
     }
     return
