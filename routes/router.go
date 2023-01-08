@@ -22,7 +22,7 @@ func NewRouter(
 }
 
 // Assign controller method by HTTP Request Method
-func proxy(router Router, w http.ResponseWriter, r *http.Request) Response.ApiResponseInterface {
+func proxyBirthDay(router Router, w http.ResponseWriter, r *http.Request) Response.ApiResponseInterface {
   switch r.Method {
     case "GET":
       return router.i_birth_day_controller.ListBirthDay(w, r)
@@ -34,7 +34,7 @@ func proxy(router Router, w http.ResponseWriter, r *http.Request) Response.ApiRe
 }
 
 func (router Router) HandleBirthDayRequest(w http.ResponseWriter, r *http.Request) {
-  response := proxy(router, w, r)
+  response := proxyBirthDay(router, w, r)
   output, _ := json.MarshalIndent(response, "", "\t\t")
   w.Header().Set("Content-Type", "application/json")
   w.WriteHeader(response.GetStatusCode())

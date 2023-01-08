@@ -40,6 +40,7 @@ func (controller_birthday BirthDayController) ListBirthDay(w http.ResponseWriter
       usecase_list_birth_day.BirthDayResponse{
         Id: v.Id,
         UserId: v.UserId,
+        Name: v.Name,
         Date: v.Date,
       },
     )
