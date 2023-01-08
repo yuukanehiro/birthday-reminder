@@ -8,6 +8,16 @@ type BirthDayAge struct {
   Value int
 }
 
-func CalcAge(birth_day string) int {
-  return carbon.Parse(birth_day).Age()
+type BirthDayAgeInterface interface {
+  GetValue() int
+}
+
+func NewBirthDayAge(birth_day string) BirthDayAgeInterface {
+  return BirthDayAge{
+    Value: carbon.Parse(birth_day).Age(),
+  }
+}
+
+func (b BirthDayAge) GetValue() int {
+  return b.Value
 }

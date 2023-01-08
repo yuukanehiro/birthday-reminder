@@ -21,13 +21,15 @@ func (interactor_list_birth_day ListBirthDayInteractor) Handle() (birth_days_res
   birth_days := interactor_list_birth_day.i_birth_day_repo.ListBirthDay()
   birth_days_response = []usecase_list_birth_day.BirthDayResponse{}
   for _, v := range birth_days {
+    age := domain_birth_day.NewBirthDayAge(v.Date)
+
     birth_days_response = append(
       birth_days_response,
       usecase_list_birth_day.BirthDayResponse{
         Id: v.Id,
         UserId: v.UserId,
         Name: v.Name,
-        Age: domain_birth_day.CalcAge(v.Date),
+        Age: age.GetValue(),
         Date: v.Date,
       },
     )
