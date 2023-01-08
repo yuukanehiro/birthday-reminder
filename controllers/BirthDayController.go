@@ -31,20 +31,7 @@ func NewBirthDayController(
 
 // list birth_day
 func (controller_birthday BirthDayController) ListBirthDay(w http.ResponseWriter, r *http.Request) (Response.ApiResponseInterface) {
-  birth_days := controller_birthday.i_list_birth_day_interactor.Handle()
-
-  birth_days_response := []usecase_list_birth_day.BirthDayResponse{}
-  for _, v := range birth_days {
-    birth_days_response = append(
-      birth_days_response,
-      usecase_list_birth_day.BirthDayResponse{
-        Id: v.Id,
-        UserId: v.UserId,
-        Name: v.Name,
-        Date: v.Date,
-      },
-    )
-  }
+  birth_days_response := controller_birthday.i_list_birth_day_interactor.Handle()
   return Response.NewGetSuccessResponse(birth_days_response)
 }
 
