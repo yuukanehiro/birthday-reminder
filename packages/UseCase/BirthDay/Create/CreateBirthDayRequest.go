@@ -24,15 +24,19 @@ type CreateBirthDayRequestValidates struct {
 
 var validate *validator.Validate
 
-func IsValid(req []CreateBirthDayRequestValidate) (error_array []Response.Error) {
+func IsValidRequestBody(input_data []CreateBirthDayRequest) (error_array []Response.Error) {
+  var valid_format []CreateBirthDayRequestValidate
+  for _, v := range input_data {
+    valid_format = append(valid_format, CreateBirthDayRequestValidate{UserId: v.UserId, Date: v.Date,})
+  }
   validate = validator.New()
   validate.RegisterValidation("is_date", IsDate)
-  return validateStruct(req)
+  return validateStruct(valid_format)
 }
 
-func validateStruct(req []CreateBirthDayRequestValidate) (error_array []Response.Error) {
-  requests := CreateBirthDayRequestValidates{Elements: req}
-	err := validate.Struct(requests)
+func validateStruct(valid_format []CreateBirthDayRequestValidate) (error_array []Response.Error) {
+  valid_formats := CreateBirthDayRequestValidates{Elements: valid_format}
+	err := validate.Struct(valid_formats)
   if err != nil {
     if _, ok := err.(*validator.InvalidValidationError); ok {
       return

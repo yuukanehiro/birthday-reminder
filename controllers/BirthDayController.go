@@ -49,14 +49,11 @@ func (controller_birthday BirthDayController) ListBirthDay(w http.ResponseWriter
 
 // create birth_days
 func (controller_birthday BirthDayController) CreateBirthDay(w http.ResponseWriter, r *http.Request) (Response.ApiResponseInterface) {
+  // json decode
   input_data := []usecase_create_birth_day.CreateBirthDayRequest{}
   Request.JsonDecode(r, &input_data)
-  var data []usecase_create_birth_day.CreateBirthDayRequestValidate
-  for _, v := range input_data {
-    data = append(data, usecase_create_birth_day.CreateBirthDayRequestValidate{UserId: v.UserId, Date: v.Date,})
-  }
-  errors := usecase_create_birth_day.IsValid(data)
-  if len(errors) > 0 {
+  // validate request body
+  if errors := usecase_create_birth_day.IsValidRequestBody(input_data); len(errors) > 0 {
     return Response.NewBadRequestResponse(errors)
   }
   controller_birthday.i_create_birth_day_interactor.Handle(input_data)
