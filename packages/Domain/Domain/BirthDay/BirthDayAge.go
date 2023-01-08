@@ -5,19 +5,25 @@ import (
 )
 
 type BirthDayAge struct {
-  Value int
+  value int
 }
 
 type BirthDayAgeInterface interface {
   GetValue() int
 }
 
+// construct
 func NewBirthDayAge(birth_day string) BirthDayAgeInterface {
   return BirthDayAge{
-    Value: carbon.Parse(birth_day).Age(),
+    value: calcAge(birth_day),
   }
 }
 
 func (b BirthDayAge) GetValue() int {
-  return b.Value
+  return b.value
+}
+
+// calculate age
+func calcAge(birth_day string) int {
+  return carbon.Parse(birth_day).Age()
 }
