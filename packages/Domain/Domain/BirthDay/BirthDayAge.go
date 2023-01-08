@@ -8,12 +8,8 @@ type BirthDayAge struct {
   value int
 }
 
-type BirthDayAgeInterface interface {
-  GetValue() int
-}
-
 // construct
-func NewBirthDayAge(birth_day string) BirthDayAgeInterface {
+func NewBirthDayAge(birth_day string) BirthDayAge {
   return BirthDayAge{
     value: calcAge(birth_day),
   }
