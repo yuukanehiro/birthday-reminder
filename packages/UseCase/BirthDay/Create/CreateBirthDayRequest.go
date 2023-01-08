@@ -10,11 +10,13 @@ import (
 
 type CreateBirthDayRequest struct {
   UserId int  `json:"user_id"`
+  Name string `json:"name"`
   Date string `json:"date"`
 }
 
 type CreateBirthDayRequestValidate struct {
   UserId int  `validate:"required"`
+  Name string `validate:"required"`
   Date string `validate:"required,is_date"`
 }
 
@@ -28,7 +30,11 @@ var validate *validator.Validate
 func IsValidRequestBody(input_data []CreateBirthDayRequest) (error_array []Response.Error) {
   var valid_format []CreateBirthDayRequestValidate
   for _, v := range input_data {
-    valid_format = append(valid_format, CreateBirthDayRequestValidate{UserId: v.UserId, Date: v.Date,})
+    valid_format = append(valid_format, CreateBirthDayRequestValidate{
+      UserId: v.UserId,
+      Name: v.Name,
+      Date: v.Date,
+    })
   }
   validate = validator.New()
   validate.RegisterValidation("is_date", IsDate)
