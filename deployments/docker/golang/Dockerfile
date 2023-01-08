@@ -23,7 +23,7 @@ RUN set -eux && \
 
 
 # ----------------------------------------
-FROM debian:bullseye-slim as deploy
+FROM debian:bookworm-slim as deploy
 
 ENV APP_NAME=birthday-reminder
 ENV ROOT=/go/src/app
