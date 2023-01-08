@@ -80,11 +80,11 @@ Response
   "message": "Bad Request",
   "errors": [
     {
-      "message": "Validation Error. Property:UserId Value:0",
+      "message": "Validation Error. Property:CreateBirthDayRequestValidates.Elements[1].UserId Value:0",
       "property": "UserId"
     },
     {
-      "message": "Validation Error. Property:Date Value:BadDate2025-10Xxx-07",
+      "message": "Validation Error. Property:CreateBirthDayRequestValidates.Elements[1].Date Value:BadDate2025-10Xxx-07",
       "property": "Date"
     }
   ],
