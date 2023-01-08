@@ -9,23 +9,23 @@ import (
 )
 
 type Rdb struct {
-  i_rdb domain_rdb.RdbInterface
+  cfg *config.Config
 }
 
 // construct
-func NewRdb() domain_rdb.RdbInterface {
-  return &Rdb{}
+func NewRdb(cfg *config.Config) domain_rdb.RdbInterface {
+  return &Rdb{cfg: cfg}
 }
 
 // create gorm instance for PostgreSQL
-func (r Rdb) ConnectDB(cfg *config.Config) *gorm.DB {
+func (r Rdb) ConnectDB() *gorm.DB {
   dsn := fmt.Sprintf(
     "host=%s user=%s password=%s dbname=%s port=%d sslmode=disable TimeZone=Asia/Shanghai",
-    cfg.DB_HOST,
-    cfg.DB_USER,
-    cfg.DB_PASSWORD,
-    cfg.DB_NAME,
-    cfg.DB_PORT,
+    r.cfg.DB_HOST,
+    r.cfg.DB_USER,
+    r.cfg.DB_PASSWORD,
+    r.cfg.DB_NAME,
+    r.cfg.DB_PORT,
   )
   db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
   if err != nil {
