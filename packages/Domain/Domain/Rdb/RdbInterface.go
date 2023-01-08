@@ -6,5 +6,5 @@ import (
 )
 
 type RdbInterface interface {
-  ConnectDB(cfg *config.Config) *gorm.DB
+  ConnectDB() *gorm.DB
 }
