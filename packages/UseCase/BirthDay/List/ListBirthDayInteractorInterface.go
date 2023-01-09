@@ -1,5 +1,9 @@
 package List
 
+import (
+  "birthday-reminder/packages/Domain/Domain/Response"
+)
+
 type ListBirthDayInteractorInterface interface {
-  Handle() (birth_days []BirthDayResponse)
+  Handle() (Response.ApiResponseInterface)
 }
