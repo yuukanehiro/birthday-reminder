@@ -36,7 +36,8 @@ http://localhost:8080/api/v1/user/register/
 ```
 ### 誕生日を配列で取得
 GET  
-http://localhost:8080/api/v1/birth-days/
+http://localhost:8080/api/v1/birth-days/  
+Authorization: Bearer {AccessToken}
   
 Response  
 200
@@ -64,10 +65,21 @@ Response
   ]
 }
 ```
-
+  
+401
+```
+{
+  "timestamp": "2023-01-10T01:55:32+09:00",
+  "status_code": 401,
+  "message": "Unauthorized",
+  "errors": [],
+  "data": []
+}
+```
 ### 誕生日を登録
 POST  
 http://localhost:8080/api/v1/birth-days/  
+Authorization: Bearer {AccessToken}
   
 RequestBody
 ```json:
@@ -114,3 +126,15 @@ Response
   "data": []
 }
 ```
+  
+401
+```
+{
+  "timestamp": "2023-01-10T01:55:32+09:00",
+  "status_code": 401,
+  "message": "Unauthorized",
+  "errors": [],
+  "data": []
+}
+```
+  

@@ -4,6 +4,7 @@ import (
   "fmt"
   "net/http"
   "gorm.io/gorm"
+  //jwtmiddleware "github.com/auth0/go-jwt-middleware"
   "birthday-reminder/config"
   "birthday-reminder/routes"
   "birthday-reminder/controllers"
@@ -40,8 +41,9 @@ func main() {
   server := http.Server{
     Addr: fmt.Sprintf(":%d", cfg.WEB_PORT),
   }
-  http.HandleFunc("/api/v1/birth-days/", router.HandleBirthDayRequest)
   http.HandleFunc("/api/v1/user/register/", router.HandleAuthRegisterRequest)
+  http.HandleFunc("/api/v1/birth-days/", router.HandleBirthDayRequest)
+
   // finally disconnect DB
   db, _ := rdb.DB()
   defer db.Close()
@@ -54,3 +56,4 @@ func newRDB(cfg *config.Config) (*gorm.DB) {
   rdb := infra_repo_Rdb.NewRdb(cfg)
   return rdb.ConnectDB()
 }
+
