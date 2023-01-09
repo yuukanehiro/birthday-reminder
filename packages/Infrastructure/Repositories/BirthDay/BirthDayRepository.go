@@ -18,18 +18,18 @@ func NewBirthDayRepository(rdb *gorm.DB) domain_birth_day.BirthDayRepositoryInte
 }
 
 // get list birth_days
-func (repository_birth_day BirthDayRepository) ListBirthDay() (birth_days []domain_birth_day.BirthDay) {
+func (repository BirthDayRepository) ListBirthDay() (birth_days []domain_birth_day.BirthDay) {
   birth_days = []domain_birth_day.BirthDay{}
-  if err := repository_birth_day.rdb.Select("id, user_id, name, date").Find(&birth_days).Error; err != nil {
+  if err := repository.rdb.Select("id, user_id, name, date").Find(&birth_days).Error; err != nil {
     panic("Error Select.")
   }
   return
 }
 
 // create birth_day
-func (repository_birth_day BirthDayRepository) CreateBirthDay(birth_days_request []usecase_create_birth_day.CreateBirthDayRequest) {
-  for _, v := range birth_days_request {
-    if err := repository_birth_day.rdb.Exec(
+func (repository BirthDayRepository) CreateBirthDay(request []usecase_create_birth_day.CreateBirthDayRequest) {
+  for _, v := range request {
+    if err := repository.rdb.Exec(
       "INSERT INTO birth_days (user_id, name, date) VALUES (?, ?, ?)",
       v.UserId,
       v.Name,
