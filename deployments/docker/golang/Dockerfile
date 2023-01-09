@@ -9,10 +9,7 @@ COPY ./ ${ROOT}
 WORKDIR ${ROOT}
 
 RUN apk update && \
-  apk --no-cache add git postgresql-client && \
-  go get -u github.com/cosmtrek/air && \
-  go build -o /go/bin/air github.com/cosmtrek/air && \
-  go install github.com/go-delve/delve/cmd/dlv@latest
+  apk --no-cache add git postgresql-client
 
 ARG CGO_ENABLED=0
 ARG GOOS=linux
