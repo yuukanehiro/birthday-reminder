@@ -30,7 +30,7 @@ func (interactor AuthRegisterInteractor) Handle() Response.ApiResponseInterface 
   }
   token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
   // Add Signature to Token
-  tokenString, _ := token.SignedString([]byte(cfg.JWT_SECRET_KEY))
-  response_auth_register := usecase_auth_register.NewAuthRegisterResponse(tokenString)
+  token_string, _ := token.SignedString([]byte(cfg.JWT_SECRET_KEY))
+  response_auth_register := usecase_auth_register.NewAuthRegisterResponse(token_string)
   return Response.NewCreateSuccessResponseWithData(response_auth_register)
 }
