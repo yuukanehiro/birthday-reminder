@@ -39,7 +39,7 @@ curl -X POST http://localhost:8080/api/v1/user/register/
 ```
 ### 誕生日を配列で取得
 GET  
-http://localhost:8080/api/v1/birth-days/  
+/api/v1/birth-days/  
 Authorization: Bearer {AccessToken}
 ```
 curl -X GET -H "Authorization: Bearer eyJhbGciO (略) BHrAhDx" http://localhost:8080/api/v1/birth-days/
@@ -83,7 +83,7 @@ Response
 ```
 ### 誕生日を登録
 POST  
-http://localhost:8080/api/v1/birth-days/  
+/api/v1/birth-days/  
 Authorization: Bearer {AccessToken}
 ```
 curl -X POST -H 'Authorization: Bearer eyJhbGciO (略) BHrAhDx' -H "Content-Type: application/json" -d '[{"user_id":1,"name":"お父さん","date":"1951-12-01"}]' http://localhost:8080/api/v1/birth-days/
