@@ -17,6 +17,23 @@ $ docker-compose up -d
 
 ## API
 
+### 匿名ユーザ登録
+POST
+
+Response
+201
+http://localhost:8080/api/v1/user/register/
+```
+{
+  "timestamp": "2023-01-09T17:48:29+09:00",
+  "status_code": 201,
+  "message": "Created",
+  "errors": [],
+  "data": {
+    "access_token": "eyJhxxxxxxxxx5hlf-Tyo"
+  }
+}
+```
 ### 誕生日を配列で取得
 GET  
 http://localhost:8080/api/v1/birth-days/
