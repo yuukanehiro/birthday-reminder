@@ -29,9 +29,7 @@ func (interactor AuthRegisterInteractor) Handle() Response.ApiResponseInterface 
     "exp": time.Now().Add(time.Hour * time.Duration(cfg.JWT_TOKEN_EXPIRE_HOUR)).Unix(),
   }
   token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-  // fmt.Printf("Header: %#v\n", token.Header) // Header: map[string]interface {}{"alg":"HS256", "typ":"JWT"}
-  // fmt.Printf("Claims: %#v\n", token.Claims) // CClaims: jwt.MapClaims{"exp":1634051243, "user_id":12345678}
-  // トークンに署名を付与
+  // Add Signature to Token
   tokenString, _ := token.SignedString([]byte(cfg.JWT_SECRET_KEY))
   response_auth_register := usecase_auth_register.NewAuthRegisterResponse(tokenString)
   return Response.NewCreateSuccessResponseWithData(response_auth_register)
