@@ -13,6 +13,7 @@ type CreateSuccessResponse struct {
   Data       interface{} `json:"data"`
 }
 
+// construct
 func NewCreateSuccessResponse() ApiResponseInterface {
   return &CreateSuccessResponse {
     Timestamp: Timestamp.GetNowTimeByISO8601Format(),
@@ -22,6 +23,17 @@ func NewCreateSuccessResponse() ApiResponseInterface {
     Data: []Empty{},
   }
 }
+
+func NewCreateSuccessResponseWithData(data interface{}) ApiResponseInterface {
+  return &CreateSuccessResponse {
+    Timestamp: Timestamp.GetNowTimeByISO8601Format(),
+    StatusCode: http.StatusCreated,
+    Message: http.StatusText(http.StatusCreated),
+    Errors: []Error{},
+    Data: data,
+  }
+}
+
 
 func (r CreateSuccessResponse) GetStatusCode() int {
   return r.StatusCode

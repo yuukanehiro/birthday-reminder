@@ -13,6 +13,7 @@ type BadRequestResponse struct {
   Data       interface{} `json:"data"`
 }
 
+// construct
 func NewBadRequestResponse(errors []Error) ApiResponseInterface {
   return &BadRequestResponse {
     Timestamp: Timestamp.GetNowTimeByISO8601Format(),
@@ -23,6 +24,7 @@ func NewBadRequestResponse(errors []Error) ApiResponseInterface {
   }
 }
 
+// GetStatusCode get HTTP status code
 func (r BadRequestResponse) GetStatusCode() int {
   return r.StatusCode
 }

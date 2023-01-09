@@ -1,8 +1,8 @@
 CREATE TABLE users
 (
   id SERIAL,
-  insert_date TIMESTAMP WITH TIME ZONE,
-  update_date TIMESTAMP WITH TIME ZONE,
+  insert_date TIMESTAMP,
+  update_date TIMESTAMP,
   PRIMARY KEY (id)
 );
 INSERT INTO users (id) VALUES (1),(2),(3);
@@ -12,8 +12,8 @@ CREATE TABLE user_accounts
   id SERIAL,
   user_id BIGINT,
   password VARCHAR(255),
-  insert_date TIMESTAMP WITH TIME ZONE,
-  update_date TIMESTAMP WITH TIME ZONE,
+  insert_date TIMESTAMP,
+  update_date TIMESTAMP,
   PRIMARY KEY (id),
   FOREIGN KEY(user_id) REFERENCES users(id)
 );
@@ -29,8 +29,8 @@ CREATE TABLE birth_days
   user_id BIGINT,
   name VARCHAR(255),
   date DATE,
-  insert_date TIMESTAMP WITH TIME ZONE,
-  update_date TIMESTAMP WITH TIME ZONE,
+  insert_date TIMESTAMP,
+  update_date TIMESTAMP,
   PRIMARY KEY (id),
   FOREIGN KEY(user_id) REFERENCES users(id)
 );
