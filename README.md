@@ -20,8 +20,8 @@ $ docker-compose up -d
 ### 匿名ユーザ登録
 POST
 
-Response
-201
+Response  
+201  
 http://localhost:8080/api/v1/user/register/
 ```
 {
