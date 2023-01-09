@@ -19,7 +19,7 @@ type Config struct {
   VALIDATE_REQUEST_BODY_MESSAGE  string `env:"VALIDATE_REQUEST_BODY_MESSAGE" envDefault:"Validation Error. Property:%v Value:%v"`
   VALIDATE_REQUEST_BODY_PROPERTY string `env:"VALIDATE_REQUEST_BODY_PROPERTY" envDefault:"%v"`
   // JWT override!
-  JWT_TOKEN_EXPIRE_HOUR int    `env:"JWT_TOKEN_EXPIRE_HOUR" envDefault:24`
+  JWT_TOKEN_EXPIRE_HOUR int    `env:"JWT_TOKEN_EXPIRE_HOUR" envDefault:"24"`
   JWT_SECRET_KEY        string `env:"JWT_SECRET_KEY" envDefault:"-----BEGIN RSA PRIVATE KEY-----
   MIIJKQIBAAKCAgEAmBUEKchNbTolo9QtoMXHsUUyhKhwF0Fu8z36FVQTIyy/tyaW
   vE3LfBeAW/8N38meQP9cmRtBLdosIqmR5keHNu/jjuDeD2lV6Dzu5VsmtLZOl2Of

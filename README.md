@@ -21,8 +21,11 @@ $ docker-compose up -d
 POST
 
 Response  
-201  
-http://localhost:8080/api/v1/user/register/
+/api/v1/user/register/
+```
+curl -X POST http://localhost:8080/api/v1/user/register/
+```
+201
 ```
 {
   "timestamp": "2023-01-09T17:48:29+09:00",
@@ -30,7 +33,7 @@ http://localhost:8080/api/v1/user/register/
   "message": "Created",
   "errors": [],
   "data": {
-    "access_token": "eyJhxxxxxxxxx5hlf-Tyo"
+    "access_token": "eyJhx (略) lf-Tyo"
   }
 }
 ```
@@ -38,7 +41,9 @@ http://localhost:8080/api/v1/user/register/
 GET  
 http://localhost:8080/api/v1/birth-days/  
 Authorization: Bearer {AccessToken}
-  
+```
+curl -X GET -H "Authorization: Bearer eyJhbGciO (略) BHrAhDx" http://localhost:8080/api/v1/birth-days/
+```
 Response  
 200
 ```json:
@@ -80,6 +85,9 @@ Response
 POST  
 http://localhost:8080/api/v1/birth-days/  
 Authorization: Bearer {AccessToken}
+```
+curl -X POST -H 'Authorization: Bearer eyJhbGciO (略) BHrAhDx' -H "Content-Type: application/json" -d '[{"user_id":1,"name":"お父さん","date":"1951-12-01"}]' http://localhost:8080/api/v1/birth-days/
+```
   
 RequestBody
 ```json:

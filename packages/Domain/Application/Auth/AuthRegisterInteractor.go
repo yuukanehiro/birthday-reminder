@@ -1,9 +1,6 @@
 package Auth
 
 import (
-  "time"
-  "github.com/dgrijalva/jwt-go"
-  "birthday-reminder/config"
   "birthday-reminder/packages/Domain/Domain/Response"
   domain_auth "birthday-reminder/packages/Domain/Domain/Auth"
   usecase_auth_register "birthday-reminder/packages/UseCase/Auth/Register"
@@ -23,14 +20,7 @@ func NewAuthRegisterInteractor(
 // execute
 func (interactor AuthRegisterInteractor) Handle() Response.ApiResponseInterface {
   user_id := interactor.i_auth_register_repo.AuthRegister()
-  cfg := config.NewConfig()
-  claims := jwt.MapClaims{
-    "user_id": user_id,
-    "exp": time.Now().Add(time.Hour * time.Duration(cfg.JWT_TOKEN_EXPIRE_HOUR)).Unix(),
-  }
-  token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-  // Add Signature to Token
-  token_string, _ := token.SignedString([]byte(cfg.JWT_SECRET_KEY))
-  response_auth_register := usecase_auth_register.NewAuthRegisterResponse(token_string)
+  jwt_token_string := domain_auth.GetTokenByUserId(user_id)
+  response_auth_register := usecase_auth_register.NewAuthRegisterResponse(jwt_token_string)
   return Response.NewCreateSuccessResponseWithData(response_auth_register)
 }

@@ -2,6 +2,7 @@ package Auth
 
 import (
   "fmt"
+  "time"
   "net/http"
   "strings"
   jwt "github.com/dgrijalva/jwt-go"
@@ -22,6 +23,7 @@ func ValidateToken(w http.ResponseWriter, r *http.Request) error {
     fmt.Println(claims["user_id"])
     return nil
   } else {
+    fmt.Println(err)
     return err
   }
 }
@@ -30,4 +32,17 @@ func ValidateToken(w http.ResponseWriter, r *http.Request) error {
 func getAccessToken(w http.ResponseWriter, r *http.Request) string {
   token_string_poor := r.Header["Authorization"][0]
   return strings.Split(token_string_poor, "Bearer ")[1]
+}
+
+// GetTokenByUserId return JWT AccessToken by users.id
+func GetTokenByUserId(user_id int) (jwt_token string) {
+  cfg := config.NewConfig()
+  claims := jwt.MapClaims{
+    "user_id": user_id,
+    "exp": time.Now().Add(24 * time.Hour).Unix(), // 24Hour later expire
+  }
+  token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+  // Add Signature to Token
+  jwt_token, _ = token.SignedString([]byte(cfg.JWT_SECRET_KEY))
+  return
 }
