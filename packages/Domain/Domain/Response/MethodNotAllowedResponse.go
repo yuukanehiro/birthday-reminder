@@ -13,6 +13,7 @@ type MethodNotAllowedResponse struct {
   Data       interface{} `json:"data"`
 }
 
+// construct
 func NewMethodNotAllowedResponse() ApiResponseInterface {
   return &MethodNotAllowedResponse {
     Timestamp: Timestamp.GetNowTimeByISO8601Format(),

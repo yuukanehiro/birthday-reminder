@@ -4,10 +4,14 @@ import (
   "net/http"
   "encoding/json"
   "birthday-reminder/packages/Domain/Domain/Response"
+  "birthday-reminder/packages/Domain/Domain/Auth"
 )
 
 // Assign controller method by HTTP Request Method
 func proxyBirthDay(router Router, w http.ResponseWriter, r *http.Request) Response.ApiResponseInterface {
+  if err := Auth.ValidateToken(w, r); err != nil {
+    return Response.NewStatusUnauthorizedResponse()
+  }
   switch r.Method {
     case "GET":
       return router.i_birth_day_controller.ListBirthDay(w, r)
