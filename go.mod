@@ -22,6 +22,8 @@ replace birthday-reminder/packages/Infrastructure/Repositories/Auth => ./package
 replace birthday-reminder/packages/Domain/Domain/Rdb => ./packages/Domain/Domain/Rdb
 replace birthday-reminder/packages/Infrastructure/Repositories/Rdb => ./packages/Infrastructure/Repositories/Rdb
 replace birthday-reminder/packages/MockInfrastructure/Repositories/Rdb => ./packages/MockInfrastructure/Repositories/Rdb
+// User
+replace birthday-reminder/packages/Domain/Domain/User => ./packages/Domain/Domain/User
 // other
 replace birthday-reminder/packages/Domain/Domain/Empty => ./packages/Domain/Domain/Empty
 replace birthday-reminder/packages/Domain/Domain/Timestamp => ./packages/Domain/Domain/Timestamp
