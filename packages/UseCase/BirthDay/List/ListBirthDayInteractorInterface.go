@@ -5,5 +5,5 @@ import (
 )
 
 type ListBirthDayInteractorInterface interface {
-  Handle() (Response.ApiResponseInterface)
+  Handle(user_id int64) (Response.ApiResponseInterface)
 }

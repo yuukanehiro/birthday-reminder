@@ -9,13 +9,13 @@ import (
 )
 
 type CreateBirthDayRequest struct {
-  UserId int  `json:"user_id"`
+  UserId int64  `json:"user_id"`
   Name string `json:"name"`
   Date string `json:"date"`
 }
 
 type CreateBirthDayRequestValidate struct {
-  UserId int  `validate:"required"`
+  UserId int64  `validate:"required"`
   Name string `validate:"required"`
   Date string `validate:"required,is_date"`
 }
