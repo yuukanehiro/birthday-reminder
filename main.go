@@ -51,8 +51,7 @@ func main() {
 }
 
 // create gorm instance
-func newRDB(cfg *config.Config) (*gorm.DB) {
-  rdb := infra_repo_Rdb.NewRdb(cfg)
-  return rdb.ConnectDB()
+func newRDB(cfg *config.Config) (rdb *gorm.DB) {
+  rdb = infra_repo_Rdb.NewRdb(cfg).ConnectDB()
+  return
 }
-
