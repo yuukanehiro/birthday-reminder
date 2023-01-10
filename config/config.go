@@ -19,8 +19,7 @@ type Config struct {
   VALIDATE_REQUEST_BODY_MESSAGE  string `env:"VALIDATE_REQUEST_BODY_MESSAGE" envDefault:"Validation Error. Property:%v Value:%v"`
   VALIDATE_REQUEST_BODY_PROPERTY string `env:"VALIDATE_REQUEST_BODY_PROPERTY" envDefault:"%v"`
   // JWT override!
-  JWT_TOKEN_EXPIRE_HOUR int    `env:"JWT_TOKEN_EXPIRE_HOUR" envDefault:"24"`
-  JWT_SECRET_KEY        string `env:"JWT_SECRET_KEY" envDefault:"-----BEGIN RSA PRIVATE KEY-----
+  JWT_SECRET_KEY string `env:"JWT_SECRET_KEY" envDefault:"-----BEGIN RSA PRIVATE KEY-----
   MIIJKQIBAAKCAgEAmBUEKchNbTolo9QtoMXHsUUyhKhwF0Fu8z36FVQTIyy/tyaW
   vE3LfBeAW/8N38meQP9cmRtBLdosIqmR5keHNu/jjuDeD2lV6Dzu5VsmtLZOl2Of
   lnyjVN4WaIt1TgHjQE6SCE1s9HY/lQeR0mF3BrTGsV6IU7M5a/BgLRRTcyx3alyP
@@ -71,20 +70,6 @@ type Config struct {
   6XULgE3+tV5CJNDdipa3DtaJCg1YNtniP1ljBH0dGsT72HJw6fu0iGonTOGWsk/o
   UynyZMgVlI4KOoVYGZfWzZbeapvdFRRsdLrIJi286ugoh5AmzmKaTHYJ9+tp
   -----END RSA PRIVATE KEY-----"`
-  JWT_PUBLIC_KEY string `env:"JWT_PUBLIC_KEY" envDefault:"-----BEGIN PUBLIC KEY-----
-  MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAmBUEKchNbTolo9QtoMXH
-  sUUyhKhwF0Fu8z36FVQTIyy/tyaWvE3LfBeAW/8N38meQP9cmRtBLdosIqmR5keH
-  Nu/jjuDeD2lV6Dzu5VsmtLZOl2OflnyjVN4WaIt1TgHjQE6SCE1s9HY/lQeR0mF3
-  BrTGsV6IU7M5a/BgLRRTcyx3alyPAI+LxHhTK3v+dcDPTlaJuA5nZA7n/2w7s0cl
-  UYHu1LFGGMBebPe5uIB9kce7QWTJ71qPbHg8CLV4AXC1lA0eSUHSB6Lg5hG6Fzs4
-  XgqyF/x+yLjjAdqT+lP+tNt7574O5+JsoglTxJVJRpV/+WN42P4sxMJh6KRO6uDJ
-  icRtisVbXJkHLzSXHWREVYwkWKHFlkdO+wenGu0ULuCho9ZQjv9I8VpHkbgkNB5e
-  PPRsG/lkE+xgd+aDXy7GUSoRA5Y0wzkFyJotJgehkWsYOJll0Wrfh7RpN6CIqf3t
-  CmN9fM1isO6VW+vvaIvfTsWek9Ww0+WVs18nPcMgrVZX8VYGynvuo3lx2ySvIk2s
-  0J1SOcl5f1BEcuv1avTcqY8EienMx2iyURRGSrTUzc2xwqMgRUltd26kW2ZyuaIe
-  f9oBa9Yv2G5YOOnBbyim7Owg+95OZlOkYhN3cPiH1u2mBPqkM4DDxdkBvTnl06ot
-  Ln6CrSSDaT+XF1SK7/3lZUUCAwEAAQ==
-  -----END PUBLIC KEY-----"`
 }
 
 var err error
