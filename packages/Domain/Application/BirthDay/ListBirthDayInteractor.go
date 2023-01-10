@@ -3,6 +3,7 @@ package BirthDay
 import (
   domain_birth_day "birthday-reminder/packages/Domain/Domain/BirthDay"
   usecase_list_birth_day "birthday-reminder/packages/UseCase/BirthDay/List"
+  domain_user "birthday-reminder/packages/Domain/Domain/User"
   "birthday-reminder/packages/Domain/Domain/Response"
 )
 
@@ -18,7 +19,7 @@ func NewListBirthDayInteractor(
 }
 
 // execute
-func (interactor ListBirthDayInteractor) Handle(user_id int64) (Response.ApiResponseInterface) {
+func (interactor ListBirthDayInteractor) Handle(user_id domain_user.UserId) (Response.ApiResponseInterface) {
   birth_days := interactor.i_birth_day_repo.ListBirthDay(user_id)
   birth_days_response := []usecase_list_birth_day.BirthDayResponse{}
   for _, v := range birth_days {

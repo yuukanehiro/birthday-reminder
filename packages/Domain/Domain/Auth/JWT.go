@@ -7,6 +7,7 @@ import (
   "strings"
   jwt "github.com/dgrijalva/jwt-go"
   "birthday-reminder/config"
+  domain_user "birthday-reminder/packages/Domain/Domain/User"
 )
 
 var cfg = config.NewConfig()
@@ -29,7 +30,7 @@ func ValidateToken(w http.ResponseWriter, r *http.Request) error {
 }
 
 // GetUserIdByToken return user_id during login from access_token
-func GetUserIdByToken(w http.ResponseWriter, r *http.Request) (user_id int64) {
+func GetUserIdByToken(w http.ResponseWriter, r *http.Request) (user_id domain_user.UserId) {
   tokenString := getAccessToken(w, r)
   token, _ := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
   if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
@@ -38,7 +39,7 @@ func GetUserIdByToken(w http.ResponseWriter, r *http.Request) (user_id int64) {
     return []byte(cfg.JWT_SECRET_KEY), nil
   })
   claims, _ := token.Claims.(jwt.MapClaims)
-  user_id = int64(claims["user_id"].(float64))
+  user_id = domain_user.NewUserId(int64(claims["user_id"].(float64)))
   return
 }
 

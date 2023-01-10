@@ -4,6 +4,7 @@ import (
   usecase_create_birth_day "birthday-reminder/packages/UseCase/BirthDay/Create"
   usecase_list_birth_day "birthday-reminder/packages/UseCase/BirthDay/List"
   domain_auth "birthday-reminder/packages/Domain/Domain/Auth"
+  domain_user "birthday-reminder/packages/Domain/Domain/User"
   "birthday-reminder/packages/Domain/Domain/Response"
   "birthday-reminder/packages/Domain/Domain/Request"
   "net/http"
@@ -55,11 +56,11 @@ func (controller_birthday BirthDayController) CreateBirthDay(w http.ResponseWrit
 func convertCreateInputData(
   result []usecase_create_birth_day.CreateBirthDayRequest,
   target []usecase_create_birth_day.CreateBirthDayRequest,
-  user_id int64,
+  user_id domain_user.UserId,
 ) ([]usecase_create_birth_day.CreateBirthDayRequest) {
   for _, v := range target {
     result = append(result, usecase_create_birth_day.CreateBirthDayRequest{
-      UserId: user_id,
+      UserId: user_id.GetValue(),
       Name: v.Name,
       Date: v.Date,
     })

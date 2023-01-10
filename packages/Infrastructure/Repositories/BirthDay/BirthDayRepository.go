@@ -3,6 +3,7 @@ package BirthDay
 import(
   "gorm.io/gorm"
   domain_birth_day "birthday-reminder/packages/Domain/Domain/BirthDay"
+  domain_user "birthday-reminder/packages/Domain/Domain/User"
   usecase_create_birth_day "birthday-reminder/packages/UseCase/BirthDay/Create"
 )
 
@@ -18,9 +19,9 @@ func NewBirthDayRepository(rdb *gorm.DB) domain_birth_day.BirthDayRepositoryInte
 }
 
 // get list birth_days
-func (repository BirthDayRepository) ListBirthDay(user_id int64) (birth_days []domain_birth_day.BirthDay) {
+func (repository BirthDayRepository) ListBirthDay(user_id domain_user.UserId) (birth_days []domain_birth_day.BirthDay) {
   birth_days = []domain_birth_day.BirthDay{}
-  if err := repository.rdb.Select("id, user_id, name, date").Where("user_id = ?", user_id).Find(&birth_days).Error; err != nil {
+  if err := repository.rdb.Select("id, user_id, name, date").Where("user_id = ?", user_id.GetValue()).Find(&birth_days).Error; err != nil {
     panic("Error Select.")
   }
   return
