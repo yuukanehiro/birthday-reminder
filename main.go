@@ -4,7 +4,6 @@ import (
   "fmt"
   "net/http"
   "gorm.io/gorm"
-  //jwtmiddleware "github.com/auth0/go-jwt-middleware"
   "birthday-reminder/config"
   "birthday-reminder/routes"
   "birthday-reminder/controllers"
