@@ -4,9 +4,7 @@ import (
   usecase_create_birth_day "birthday-reminder/packages/UseCase/BirthDay/Create"
   usecase_list_birth_day "birthday-reminder/packages/UseCase/BirthDay/List"
   domain_auth "birthday-reminder/packages/Domain/Domain/Auth"
-  domain_user "birthday-reminder/packages/Domain/Domain/User"
   "birthday-reminder/packages/Domain/Domain/Response"
-  "birthday-reminder/packages/Domain/Domain/Request"
   "net/http"
 )
 
@@ -39,31 +37,10 @@ func (controller_birthday BirthDayController) ListBirthDay(w http.ResponseWriter
 
 // create birth_days
 func (controller_birthday BirthDayController) CreateBirthDay(w http.ResponseWriter, r *http.Request) (Response.ApiResponseInterface) {
-  // json decode
-  input_data := []usecase_create_birth_day.CreateBirthDayRequest{}
-  Request.JsonDecode(r, &input_data)
-  user_id := domain_auth.GetUserIdByToken(w, r)
-  input_data2 := []usecase_create_birth_day.CreateBirthDayRequest{}
-
-  input_data2 = convertCreateInputData(input_data2, input_data, user_id)
-  if errors := usecase_create_birth_day.IsValidRequestBody(input_data2); len(errors) > 0 {
+  req, errors := usecase_create_birth_day.GetRequestBody(w, r)
+  if errors != nil {
+    _ = req
     return Response.NewBadRequestResponse(errors)
   }
-  return controller_birthday.i_create_birth_day_interactor.Handle(input_data2)
-}
-
-// Let the user_id bind to the object
-func convertCreateInputData(
-  result []usecase_create_birth_day.CreateBirthDayRequest,
-  target []usecase_create_birth_day.CreateBirthDayRequest,
-  user_id domain_user.UserId,
-) ([]usecase_create_birth_day.CreateBirthDayRequest) {
-  for _, v := range target {
-    result = append(result, usecase_create_birth_day.CreateBirthDayRequest{
-      UserId: user_id.GetValue(),
-      Name: v.Name,
-      Date: v.Date,
-    })
-  }
-  return result
+  return controller_birthday.i_create_birth_day_interactor.Handle(req)
 }
