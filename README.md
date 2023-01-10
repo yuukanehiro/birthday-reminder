@@ -18,13 +18,12 @@ $ docker-compose up -d
 ## API
 
 ### 匿名ユーザ登録
-POST
-
-Response  
+POST　　
 /api/v1/user/register/
 ```
 curl -X POST http://localhost:8080/api/v1/user/register/
 ```
+Response　　
 201
 ```
 {
@@ -81,7 +80,7 @@ Response
   "data": []
 }
 ```
-### 誕生日を登録
+### 誕生日を配列で登録
 POST  
 /api/v1/birth-days/  
 Authorization: Bearer {AccessToken}
