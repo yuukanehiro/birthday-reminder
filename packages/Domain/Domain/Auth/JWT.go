@@ -28,6 +28,20 @@ func ValidateToken(w http.ResponseWriter, r *http.Request) error {
   }
 }
 
+// GetUserIdByToken return user_id during login from access_token
+func GetUserIdByToken(w http.ResponseWriter, r *http.Request) (user_id int64) {
+  tokenString := getAccessToken(w, r)
+  token, _ := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
+  if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+    return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
+  }
+    return []byte(cfg.JWT_SECRET_KEY), nil
+  })
+  claims, _ := token.Claims.(jwt.MapClaims)
+  user_id = int64(claims["user_id"].(float64))
+  return
+}
+
 // getAccessToken Get JWT AccessToken from header. and remove "Bearer " string from Token
 func getAccessToken(w http.ResponseWriter, r *http.Request) string {
   token_string_poor := r.Header["Authorization"][0]

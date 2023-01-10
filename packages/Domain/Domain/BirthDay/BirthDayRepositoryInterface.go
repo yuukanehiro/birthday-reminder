@@ -5,6 +5,6 @@ import (
 )
 
 type BirthDayRepositoryInterface interface {
-  ListBirthDay() (birth_days []BirthDay)
+  ListBirthDay(user_id int64) (birth_days []BirthDay)
   CreateBirthDay(birth_days_request []usecase_create_birth_day.CreateBirthDayRequest)
 }
